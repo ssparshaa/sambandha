@@ -2,9 +2,41 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "../client/components/ui/carousel";
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Polaroid memories data
+  const memories = [
+    {
+      id: 1,
+      image: "https://api.builder.io/api/v1/image/assets/TEMP/5cc000595fda30aae93acb29ea6024aa40a4e7d8?width=667",
+      frame: "https://api.builder.io/api/v1/image/assets/TEMP/10bd7ddb2e9ac2f6a88a4be37b28f999842ae3a3?width=747",
+      rotation: "rotate-3 md:rotate-[7deg]",
+      alt: "Memory 1"
+    },
+    {
+      id: 2,
+      image: "https://api.builder.io/api/v1/image/assets/TEMP/3b05af66c6e0de826a6dbb92d2e1094805da444f?width=667",
+      frame: "https://api.builder.io/api/v1/image/assets/TEMP/ac84463a2daa2d2085a9bc0edf2ef4d1ae61c87b?width=747",
+      rotation: "-rotate-3 md:-rotate-[7deg]",
+      alt: "Memory 2"
+    },
+    {
+      id: 3,
+      image: "https://api.builder.io/api/v1/image/assets/TEMP/f42889beed5632ae8484b70892bf32e3495aadcf?width=667",
+      frame: "https://api.builder.io/api/v1/image/assets/TEMP/09b05a73488f39840df84313971bbc7195ccb876?width=747",
+      rotation: "rotate-3 md:rotate-[7deg]",
+      alt: "Memory 3"
+    }
+  ];
 
   return (
     <div className="min-h-screen w-full max-w-[1440px] mx-auto flex flex-col items-start bg-white">
@@ -118,33 +150,60 @@ export default function Home() {
       </div>
 
       {/* Memories Section */}
-      <div className="flex justify-center items-center gap-[30px] md:gap-[60px] w-full px-4 md:px-12 lg:px-[100px] py-[60px] bg-white">
-        <div className="flex flex-col md:flex-row h-auto md:h-[432px] p-[20px] justify-center items-center gap-[10px] flex-1 bg-cover bg-center bg-no-repeat shadow-2xl transform rotate-3 md:rotate-[7deg] bg-[url('https://api.builder.io/api/v1/image/assets/TEMP/10bd7ddb2e9ac2f6a88a4be37b28f999842ae3a3?width=747')]">
-          <Image 
-            src="https://api.builder.io/api/v1/image/assets/TEMP/5cc000595fda30aae93acb29ea6024aa40a4e7d8?width=667" 
-            alt="Memory" 
-            width={667}
-            height={400}
-            className="flex-1 w-full h-full object-cover shadow-inner"
-          />
+      <div className="w-full px-4 md:px-12 lg:px-[100px] py-[60px] bg-white">
+        {/* Desktop: Show all three polaroids side by side */}
+        <div className="hidden md:flex justify-center items-center gap-[30px] md:gap-[60px] w-full">
+          {memories.map((memory, index) => (
+            <div 
+              key={memory.id} 
+              className={`flex flex-col h-[432px] p-[20px] justify-center items-center gap-[10px] flex-1 bg-cover bg-center bg-no-repeat shadow-2xl transform ${memory.rotation}`}
+              style={{
+                backgroundImage: `url('${memory.frame}')`
+              }}
+            >
+              <Image 
+                src={memory.image} 
+                alt={memory.alt} 
+                width={667}
+                height={400}
+                className="flex-1 w-full h-full object-cover shadow-inner"
+              />
+            </div>
+          ))}
         </div>
-        <div className="hidden md:flex flex-col h-[432px] p-[20px] justify-center items-center gap-[10px] flex-1 bg-cover bg-center bg-no-repeat shadow-2xl transform -rotate-[7deg] bg-[url('https://api.builder.io/api/v1/image/assets/TEMP/ac84463a2daa2d2085a9bc0edf2ef4d1ae61c87b?width=747')]">
-          <Image 
-            src="https://api.builder.io/api/v1/image/assets/TEMP/3b05af66c6e0de826a6dbb92d2e1094805da444f?width=667" 
-            alt="Memory" 
-            width={667}
-            height={400}
-            className="flex-1 w-full h-full object-cover shadow-inner"
-          />
-        </div>
-        <div className="hidden lg:flex flex-col h-[432px] p-[20px] justify-center items-center gap-[10px] flex-1 bg-cover bg-center bg-no-repeat shadow-2xl transform rotate-[7deg] bg-[url('https://api.builder.io/api/v1/image/assets/TEMP/09b05a73488f39840df84313971bbc7195ccb876?width=747')]">
-          <Image 
-            src="https://api.builder.io/api/v1/image/assets/TEMP/f42889beed5632ae8484b70892bf32e3495aadcf?width=667" 
-            alt="Memory" 
-            width={667}
-            height={400}
-            className="flex-1 w-full h-full object-cover shadow-inner"
-          />
+
+        {/* Mobile & Tablet: Swipeable carousel */}
+        <div className="md:hidden w-full">
+          <Carousel 
+            className="w-full max-w-xs sm:max-w-sm mx-auto"
+            opts={{
+              align: "center",
+              loop: true,
+            }}
+          >
+            <CarouselContent>
+              {memories.map((memory) => (
+                <CarouselItem key={memory.id}>
+                  <div 
+                    className={`flex flex-col h-[320px] sm:h-[380px] p-[15px] sm:p-[20px] justify-center items-center gap-[10px] bg-cover bg-center bg-no-repeat shadow-2xl transform ${memory.rotation}`}
+                    style={{
+                      backgroundImage: `url('${memory.frame}')`
+                    }}
+                  >
+                    <Image 
+                      src={memory.image} 
+                      alt={memory.alt} 
+                      width={667}
+                      height={400}
+                      className="flex-1 w-full h-full object-cover shadow-inner"
+                    />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="left-2 sm:left-4" />
+            <CarouselNext className="right-2 sm:right-4" />
+          </Carousel>
         </div>
       </div>
 
