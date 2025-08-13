@@ -2,7 +2,11 @@ import type { Config } from "tailwindcss";
 
 export default {
   darkMode: ["class"],
-  content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
+  content: [
+    "./app/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./client/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -15,7 +19,10 @@ export default {
     extend: {
       fontFamily: {
         'epilogue': ['var(--font-epilogue)', 'sans-serif'],
-        'poppins': ['var(--font-poppins)', 'sans-serif'],
+        'poppins': ['Poppins', 'sans-serif'],
+        'reckless': ['Reckless Neue', 'serif'],
+        'montreal': ['Neue Montreal', 'sans-serif'],
+        'jost': ['Jost', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -50,6 +57,16 @@ export default {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
+        },
+        sidebar: {
+          DEFAULT: "hsl(var(--sidebar-background))",
+          foreground: "hsl(var(--sidebar-foreground))",
+          primary: "hsl(var(--sidebar-primary))",
+          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
+          accent: "hsl(var(--sidebar-accent))",
+          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
+          border: "hsl(var(--sidebar-border))",
+          ring: "hsl(var(--sidebar-ring))",
         },
       },
       borderRadius: {
