@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import NavBar from "../client/components/NavBar"; // Adjust the path if necessary
 import {
   Carousel,
@@ -13,6 +14,66 @@ import {
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Animation variants
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 60 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.6, -0.05, 0.01, 0.99]
+      }
+    }
+  };
+
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        delayChildren: 0.3,
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const slideInLeft = {
+    hidden: { opacity: 0, x: -60 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.6, -0.05, 0.01, 0.99]
+      }
+    }
+  };
+
+  const slideInRight = {
+    hidden: { opacity: 0, x: 60 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.6, -0.05, 0.01, 0.99]
+      }
+    }
+  };
+
+  const scaleIn = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.6,
+        ease: [0.6, -0.05, 0.01, 0.99]
+      }
+    }
+  };
 
   // Polaroid memories data
   const memories = [
@@ -51,72 +112,142 @@ export default function Home() {
       <NavBar />
 
       {/* Header */}
-      <div className="flex flex-col justify-center items-center gap-[10px] w-full px-4 md:px-12 lg:px-[100px] py-[60px] lg:py-[100px] bg-white">
+      <motion.div 
+        className="flex flex-col justify-center items-center gap-[10px] w-full px-4 md:px-12 lg:px-[100px] py-[60px] lg:py-[100px] bg-white"
+        initial="hidden"
+        animate="visible"
+        variants={staggerContainer}
+      >
         <div className="flex flex-col lg:flex-row justify-center items-center gap-[28px] w-full">
-          <div className="flex flex-col justify-center items-center lg:items-start gap-[40px] flex-1">
+          <motion.div 
+            className="flex flex-col justify-center items-center lg:items-start gap-[40px] flex-1"
+            variants={slideInLeft}
+          >
             <div className="flex flex-col items-center lg:items-start gap-[40px] w-full">
-              <div className="w-full text-[#2d2d2d] text-[16px] md:text-[20px] font-bold leading-[24px] md:leading-[30px] text-center lg:text-left">
+              <motion.div 
+                className="w-full text-[#2d2d2d] text-[16px] md:text-[20px] font-bold leading-[24px] md:leading-[30px] text-center lg:text-left"
+                variants={fadeInUp}
+              >
                 Your Memories, Close to Your Heart
-              </div>
-              <div className="w-full text-[#2d2d2d] text-[40px] md:text-[60px] lg:text-[80px] font-bold leading-[50px] md:leading-[70px] lg:leading-[90px] text-center lg:text-left">
+              </motion.div>
+              <motion.div 
+                className="w-full text-[#2d2d2d] text-[40px] md:text-[60px] lg:text-[80px] font-bold leading-[50px] md:leading-[70px] lg:leading-[90px] text-center lg:text-left"
+                variants={fadeInUp}
+              >
                 Stories You Can Hold
-              </div>
+              </motion.div>
             </div>
-            <div className="w-full text-[#2d2d2d] text-[15px] md:text-[17px] font-normal leading-[22px] md:leading-[27px] text-center lg:text-left">
+            <motion.div 
+              className="w-full text-[#2d2d2d] text-[15px] md:text-[17px] font-normal leading-[22px] md:leading-[27px] text-center lg:text-left"
+              variants={fadeInUp}
+            >
               Probably the Closest Thing to Time Travel — Powered by Touch,
               Fueled by Love.
-            </div>
-          </div>
-          <Image
-            src="https://api.builder.io/api/v1/image/assets/TEMP/38ec7941626fec7cff55aa25e3ad5aba509d0ad0?width=1212"
-            alt="Stories You Can Hold"
-            width={636}
-            height={424}
-            className="h-[250px] md:h-[350px] lg:h-[424px] flex-1 object-cover rounded-lg"
-          />
+            </motion.div>
+          </motion.div>
+          <motion.div
+            variants={slideInRight}
+          >
+            <Image
+              src="https://api.builder.io/api/v1/image/assets/TEMP/38ec7941626fec7cff55aa25e3ad5aba509d0ad0?width=1212"
+              alt="Stories You Can Hold"
+              width={636}
+              height={424}
+              className="h-[250px] md:h-[350px] lg:h-[424px] flex-1 object-cover rounded-lg"
+            />
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Logos Section */}
-      <div className="flex justify-center items-center gap-[10px] w-full px-4 md:px-12 lg:px-[66px] bg-white">
+      <motion.div 
+        className="flex justify-center items-center gap-[10px] w-full px-4 md:px-12 lg:px-[66px] bg-white"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={staggerContainer}
+      >
         <div className="flex h-[147px] py-[60px] items-start flex-1 border-t-2 border-b-2 border-black/20 gap-0">
           <div className="flex justify-between items-center flex-1">
-            <div className="flex-1 text-black text-center text-[20px] md:text-[24px] lg:text-[32px] font-bold leading-[27px]">
+            <motion.div 
+              className="flex-1 text-black text-center text-[20px] md:text-[24px] lg:text-[32px] font-bold leading-[27px]"
+              variants={scaleIn}
+            >
               स्नेह
-            </div>
-            <div className="flex-1 text-black text-center text-[20px] md:text-[24px] lg:text-[32px] font-bold leading-[27px]">
+            </motion.div>
+            <motion.div 
+              className="flex-1 text-black text-center text-[20px] md:text-[24px] lg:text-[32px] font-bold leading-[27px]"
+              variants={scaleIn}
+            >
               حب
-            </div>
+            </motion.div>
           </div>
           <div className="flex justify-between items-center flex-1">
-            <div className="flex-1 text-black text-center text-[20px] md:text-[24px] lg:text-[32px] font-bold leading-[27px]">
+            <motion.div 
+              className="flex-1 text-black text-center text-[20px] md:text-[24px] lg:text-[32px] font-bold leading-[27px]"
+              variants={scaleIn}
+            >
               Amour
-            </div>
-            <div className="flex-1 text-black text-center text-[20px] md:text-[24px] lg:text-[32px] font-bold leading-[27px]">
+            </motion.div>
+            <motion.div 
+              className="flex-1 text-black text-center text-[20px] md:text-[24px] lg:text-[32px] font-bold leading-[27px]"
+              variants={scaleIn}
+            >
               사랑
-            </div>
+            </motion.div>
           </div>
           <div className="flex justify-between items-center flex-1">
-            <div className="flex-1 text-black text-center text-[20px] md:text-[24px] lg:text-[32px] font-bold leading-[27px]">
+            <motion.div 
+              className="flex-1 text-black text-center text-[20px] md:text-[24px] lg:text-[32px] font-bold leading-[27px]"
+              variants={scaleIn}
+            >
               愛
-            </div>
-            <div className="flex-1 text-black text-center text-[20px] md:text-[24px] lg:text-[32px] font-bold leading-[27px]">
+            </motion.div>
+            <motion.div 
+              className="flex-1 text-black text-center text-[20px] md:text-[24px] lg:text-[32px] font-bold leading-[27px]"
+              variants={scaleIn}
+            >
               אהבה
-            </div>
+            </motion.div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Memories Section */}
-      <div className="w-full px-4 md:px-12 lg:px-[100px] py-[60px] bg-white">
+      <motion.div 
+        className="w-full px-4 md:px-12 lg:px-[100px] py-[60px] bg-white"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={staggerContainer}
+      >
         {/* Desktop: Show all three polaroids side by side */}
         <div className="hidden md:flex justify-center items-center gap-[30px] md:gap-[60px] w-full">
           {memories.map((memory, index) => (
-            <div
+            <motion.div
               key={memory.id}
               className={`flex flex-col h-[432px] p-[20px] justify-center items-center gap-[10px] flex-1 bg-cover bg-center bg-no-repeat shadow-2xl transform ${memory.rotation}`}
               style={{
                 backgroundImage: `url('${memory.frame}')`,
+              }}
+              variants={{
+                hidden: { opacity: 0, y: 80, rotate: 0 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  rotate: memory.rotation.includes('-') ? -7 : 7,
+                  transition: {
+                    duration: 0.8,
+                    delay: index * 0.2,
+                    ease: [0.6, -0.05, 0.01, 0.99]
+                  }
+                }
+              }}
+              whileHover={{
+                y: -10,
+                scale: 1.05,
+                rotate: 0,
+                transition: { duration: 0.3 }
               }}
             >
               <Image
@@ -126,12 +257,15 @@ export default function Home() {
                 height={400}
                 className="flex-1 w-full h-full object-cover shadow-inner"
               />
-            </div>
+            </motion.div>
           ))}
         </div>
 
         {/* Mobile & Tablet: Swipeable carousel */}
-        <div className="md:hidden w-full">
+        <motion.div 
+          className="md:hidden w-full"
+          variants={fadeInUp}
+        >
           <Carousel
             className="w-full max-w-xs sm:max-w-sm mx-auto"
             opts={{
@@ -162,8 +296,8 @@ export default function Home() {
             <CarouselPrevious className="left-2 sm:left-4" />
             <CarouselNext className="right-2 sm:right-4" />
           </Carousel>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       {/* Products Section */}
       <div className="flex flex-col items-center gap-[60px] w-full px-4 md:px-12 lg:px-[100px] py-[60px] bg-white">
