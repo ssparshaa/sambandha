@@ -34,7 +34,7 @@ export default function NavBar() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-6 lg:gap-8">
             <Link 
-              href="/products" 
+              href="/product" 
               className="text-[#2d2d2d] hover:text-blue-600 font-medium transition-colors duration-200"
             >
               Products
@@ -79,7 +79,7 @@ export default function NavBar() {
         <div className="md:hidden bg-white border-t border-gray-100 shadow-lg">
           <div className="px-4 py-4 space-y-3">
             <Link 
-              href="/products" 
+              href="/product" 
               className="block text-[#2d2d2d] hover:text-blue-600 hover:bg-gray-50 px-3 py-2 rounded-lg font-medium transition-colors duration-200"
               onClick={() => setIsOpen(false)}
             >
