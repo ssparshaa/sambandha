@@ -1,67 +1,87 @@
-// components/NavBar.tsx
 "use client";
+import { useState } from "react";
+import Link from "next/link";
+import { Menu, X } from "lucide-react";
 
-import * as React from "react";
-
-const NavBar: React.FC = () => {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+export default function NavBar() {
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <>
-      {/* Navigation */}
-      <nav className="flex justify-between items-center w-full px-4 md:px-12 lg:px-[50px] py-[25px] bg-white">
-        {/* Logo + Brand */}
-        <div className="flex justify-center items-center gap-[5px]">
+    <nav className="bg-white shadow-sm">
+      <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-2">
           <img
             src="https://api.builder.io/api/v1/image/assets/TEMP/99cb12525e242aadfab6c5c5815d4d264d69be45?width=54"
             alt="Sambandha logo"
-            className="w-[27px] h-[27px]"
+            className="w-6 h-6"
           />
-          <div className="text-[#2d2d2d] font-epilogue text-[20px] font-bold leading-[30px]">
-            Sambandha
-          </div>
-        </div>
+          <span className="font-semibold text-gray-900">Sambandha</span>
+        </Link>
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex items-start gap-[50px]">
-          {["Products", "About", "Contact", "Sign In"].map((item) => (
-            <div
-              key={item}
-              className="text-[#2d2d2d] font-epilogue text-[17px] font-normal leading-[28px] cursor-pointer hover:opacity-70 transition-opacity"
+        {/* Desktop Links */}
+        <ul className="hidden md:flex items-center gap-8">
+          <li>
+            <Link
+              href="/products"
+              className="text-gray-800 hover:text-blue-500"
             >
-              {item}
-            </div>
-          ))}
-        </div>
+              Products
+            </Link>
+          </li>
+          <li>
+            <Link href="/about" className="text-gray-800 hover:text-blue-500">
+              About
+            </Link>
+          </li>
+          <li>
+            <Link href="/contact" className="text-gray-800 hover:text-blue-500">
+              Contact
+            </Link>
+          </li>
+          <li>
+            <Link href="/signin" className="text-gray-800 hover:text-blue-500">
+              Sign In
+            </Link>
+          </li>
+        </ul>
 
-        {/* Mobile Menu Button */}
+        {/* Hamburger Icon */}
         <button
-          className="md:hidden flex flex-col cursor-pointer gap-1"
-          onClick={() => setIsMenuOpen((prev) => !prev)}
+          className="md:hidden text-gray-800 hover:text-blue-500"
+          onClick={() => setIsOpen(!isOpen)}
         >
-          <span className="w-[25px] h-[3px] bg-[#2d2d2d] transition-all duration-300"></span>
-          <span className="w-[25px] h-[3px] bg-[#2d2d2d] transition-all duration-300"></span>
-          <span className="w-[25px] h-[3px] bg-[#2d2d2d] transition-all duration-300"></span>
+          {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
-      </nav>
+      </div>
 
       {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className="md:hidden w-full bg-white px-4 py-4 border-t border-gray-200">
-          <div className="flex flex-col gap-4">
-            {["Products", "About", "Contact", "Sign In"].map((item) => (
-              <div
-                key={item}
-                className="text-[#2d2d2d] font-epilogue text-[17px] font-normal leading-[28px] cursor-pointer"
-              >
-                {item}
-              </div>
-            ))}
-          </div>
+      {isOpen && (
+        <div className="md:hidden bg-white shadow-lg">
+          <ul className="flex flex-col gap-4 p-4">
+            <li>
+              <Link href="/products" onClick={() => setIsOpen(false)}>
+                Products
+              </Link>
+            </li>
+            <li>
+              <Link href="/about" onClick={() => setIsOpen(false)}>
+                About
+              </Link>
+            </li>
+            <li>
+              <Link href="/contact" onClick={() => setIsOpen(false)}>
+                Contact
+              </Link>
+            </li>
+            <li>
+              <Link href="/signin" onClick={() => setIsOpen(false)}>
+                Sign In
+              </Link>
+            </li>
+          </ul>
         </div>
       )}
-    </>
+    </nav>
   );
-};
-
-export default NavBar;
+}
