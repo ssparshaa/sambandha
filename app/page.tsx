@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import NavBar from "../client/components/NavBar"; // Adjust the path if necessary
 import {
   Carousel,
@@ -16,19 +16,19 @@ export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Animation variants
-  const fadeInUp = {
+  const fadeInUp: Variants = {
     hidden: { opacity: 0, y: 60 },
     visible: { 
       opacity: 1, 
       y: 0,
       transition: {
         duration: 0.8,
-        ease: [0.6, -0.05, 0.01, 0.99]
+        ease: [0.6, -0.05, 0.01, 0.99] as [number, number, number, number]
       }
     }
   };
 
-  const staggerContainer = {
+  const staggerContainer: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -39,38 +39,38 @@ export default function Home() {
     }
   };
 
-  const slideInLeft = {
+  const slideInLeft: Variants = {
     hidden: { opacity: 0, x: -60 },
     visible: {
       opacity: 1,
       x: 0,
       transition: {
         duration: 0.8,
-        ease: [0.6, -0.05, 0.01, 0.99]
+        ease: [0.6, -0.05, 0.01, 0.99] as [number, number, number, number]
       }
     }
   };
 
-  const slideInRight = {
+  const slideInRight: Variants = {
     hidden: { opacity: 0, x: 60 },
     visible: {
       opacity: 1,
       x: 0,
       transition: {
         duration: 0.8,
-        ease: [0.6, -0.05, 0.01, 0.99]
+        ease: [0.6, -0.05, 0.01, 0.99] as [number, number, number, number]
       }
     }
   };
 
-  const scaleIn = {
+  const scaleIn: Variants = {
     hidden: { opacity: 0, scale: 0.8 },
     visible: {
       opacity: 1,
       scale: 1,
       transition: {
         duration: 0.6,
-        ease: [0.6, -0.05, 0.01, 0.99]
+        ease: [0.6, -0.05, 0.01, 0.99] as [number, number, number, number]
       }
     }
   };
@@ -239,7 +239,7 @@ export default function Home() {
                   transition: {
                     duration: 0.8,
                     delay: index * 0.2,
-                    ease: [0.6, -0.05, 0.01, 0.99]
+                    ease: [0.6, -0.05, 0.01, 0.99] as [number, number, number, number]
                   }
                 }
               }}
