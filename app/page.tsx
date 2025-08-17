@@ -107,7 +107,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen w-full max-w-[1440px] mx-auto flex flex-col items-start bg-white">
+    <div className="min-h-screen w-full max-w-[1440px] mx-auto flex flex-col bg-white">
       {/* Navigation */}
       <NavBar />
 
