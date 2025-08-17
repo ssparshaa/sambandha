@@ -2,49 +2,13 @@
 // Or Next.js Pages Router: pages/product-morgan.tsx
 
 import { ShoppingBag, Plus, Menu, ArrowUpRight, Instagram, Facebook, Twitter, Youtube, Twitch } from "lucide-react";
+import NavBar from "../../client/components/NavBar";
 
 export default function ProductMorgan() {
   return (
     <div className="flex flex-col w-full min-h-screen bg-white">
       {/* Navigation */}
-      <nav className="flex justify-center items-center gap-2.5 w-full px-4 md:px-10 py-3 bg-[rgba(227,240,234,0.30)] backdrop-blur-[9px]">
-        {/* Logo */}
-        <div className="flex flex-col items-start gap-2.5 flex-1">
-          <img 
-            src="https://api.builder.io/api/v1/image/assets/TEMP/08df01d3190fb575f1895d32eef17f9bb191dc8b?width=270" 
-            alt="Sambandha"
-            className="w-[100px] md:w-[135px] h-[25px] md:h-[34px]"
-          />
-        </div>
-        
-        {/* Navigation Links */}
-        <div className="hidden md:flex justify-center items-center gap-[54px] flex-1">
-          <div className="flex items-center gap-1.5">
-            <span className="text-[#151313] font-reckless text-base font-normal leading-normal">
-              Home
-            </span>
-            <Plus className="w-2.5 h-2.5 text-[#656665]" />
-          </div>
-          <div className="flex items-center gap-1.5">
-            <span className="text-[#151313] font-reckless text-base font-normal leading-normal">
-              Products
-            </span>
-            <Plus className="w-2.5 h-2.5 text-[#656665]" />
-          </div>
-          <div className="flex items-center gap-1.5">
-            <span className="text-[#151313] font-reckless text-base font-normal leading-normal">
-              About Us
-            </span>
-            <Plus className="w-2.5 h-2.5 text-[#656665]" />
-          </div>
-        </div>
-        
-        {/* Navigation Actions */}
-        <div className="flex justify-end items-center gap-5 flex-1">
-          <ShoppingBag className="w-5 h-5 text-[#151313]" />
-          <Menu className="w-[23px] h-[22px] text-[#151313]" />
-        </div>
-      </nav>
+            <NavBar />
 
       {/* Main Product Section */}
       <div className="flex flex-col lg:flex-row px-4 md:px-10 items-start gap-6 lg:gap-[25px] w-full mt-8 lg:mt-[54px]">
