@@ -1,0 +1,11 @@
+{
+  "/_not-found/page": "/_not-found",
+  "/api/ping/route": "/api/ping",
+  "/api/demo/route": "/api/demo",
+  "/aboutus/page": "/aboutus",
+  "/contact/page": "/contact",
+  "/login/page": "/login",
+  "/page": "/",
+  "/product/page": "/product",
+  "/about/page": "/about"
+}
