@@ -4,7 +4,7 @@ import NavBar from "../../client/components/NavBar";
 
 export default function About() {
   return (
-    <div className="min-h-screen w-full max-w-[1440px] mx-auto flex flex-col items-start bg-white">
+    <div className="flex flex-col w-full min-h-screen bg-white">
       {/* Navigation */}
       <NavBar />
       

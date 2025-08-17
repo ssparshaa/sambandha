@@ -1006,6 +1006,9 @@ video {
 .max-w-xs {
   max-width: 20rem;
 }
+.max-w-\[900px\] {
+  max-width: 900px;
+}
 .flex-1 {
   flex: 1 1 0%;
 }
@@ -1208,6 +1211,12 @@ video {
 }
 .gap-\[60px\] {
   gap: 60px;
+}
+.gap-\[125px\] {
+  gap: 125px;
+}
+.gap-\[67\.5px\] {
+  gap: 67.5px;
 }
 .space-x-1 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
@@ -3346,6 +3355,10 @@ body {
     width: auto;
   }
 
+  .md\:w-\[900px\] {
+    width: 900px;
+  }
+
   .md\:max-w-\[420px\] {
     max-width: 420px;
   }
@@ -3652,6 +3665,11 @@ body {
   .lg\:py-\[80px\] {
     padding-top: 80px;
     padding-bottom: 80px;
+  }
+
+  .lg\:px-0 {
+    padding-left: 0px;
+    padding-right: 0px;
   }
 
   .lg\:pt-\[80px\] {
