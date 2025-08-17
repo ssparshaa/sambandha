@@ -22,7 +22,10 @@ export default function NavBar() {
       <div className="max-w-[1440px] mx-auto px-4 md:px-12 lg:px-[100px]">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+          <Link
+            href="/"
+            className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+          >
             <img
               src="https://api.builder.io/api/v1/image/assets/TEMP/99cb12525e242aadfab6c5c5815d4d264d69be45?width=54"
               alt="Sambandha logo"
@@ -33,29 +36,29 @@ export default function NavBar() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-6 lg:gap-8">
-            <Link 
-              href="/product" 
+            <Link
+              href="/product"
               className="text-[#2d2d2d] hover:text-blue-600 font-medium transition-colors duration-200"
             >
               Products
             </Link>
-            <Link 
-              href="/about" 
+            <Link
+              href="/about"
               className="text-[#2d2d2d] hover:text-blue-600 font-medium transition-colors duration-200"
             >
               About
             </Link>
-            <Link 
-              href="/contact" 
+            <Link
+              href="/contact"
               className="text-[#2d2d2d] hover:text-blue-600 font-medium transition-colors duration-200"
             >
               Contact
             </Link>
-            <Link 
-              href="/signin" 
+            <Link
+              href="/login"
               className="bg-[#2d2d2d] text-white px-4 py-2 rounded-lg hover:bg-gray-800 font-medium transition-colors duration-200"
             >
-              Sign In
+              Login
             </Link>
           </div>
 
@@ -78,30 +81,30 @@ export default function NavBar() {
       {isOpen && (
         <div className="md:hidden bg-white border-t border-gray-100 shadow-lg">
           <div className="px-4 py-4 space-y-3">
-            <Link 
-              href="/product" 
+            <Link
+              href="/product"
               className="block text-[#2d2d2d] hover:text-blue-600 hover:bg-gray-50 px-3 py-2 rounded-lg font-medium transition-colors duration-200"
               onClick={() => setIsOpen(false)}
             >
               Products
             </Link>
-            <Link 
-              href="/about" 
+            <Link
+              href="/about"
               className="block text-[#2d2d2d] hover:text-blue-600 hover:bg-gray-50 px-3 py-2 rounded-lg font-medium transition-colors duration-200"
               onClick={() => setIsOpen(false)}
             >
               About
             </Link>
-            <Link 
-              href="/contact" 
+            <Link
+              href="/contact"
               className="block text-[#2d2d2d] hover:text-blue-600 hover:bg-gray-50 px-3 py-2 rounded-lg font-medium transition-colors duration-200"
               onClick={() => setIsOpen(false)}
             >
               Contact
             </Link>
             <div className="pt-2 border-t border-gray-100">
-              <Link 
-                href="/signin" 
+              <Link
+                href="/signin"
                 className="block bg-[#2d2d2d] text-white text-center px-4 py-3 rounded-lg hover:bg-gray-800 font-medium transition-colors duration-200"
                 onClick={() => setIsOpen(false)}
               >
