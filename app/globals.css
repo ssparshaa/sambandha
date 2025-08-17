@@ -14,7 +14,7 @@ All colors MUST be HSL.
     --sambandha-warm-white: 35 20% 98%;
     --sambandha-soft-pink: 340 40% 90%;
     --sambandha-cream: 35 15% 94%;
-    
+
     /* Standard theme colors */
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
@@ -36,7 +36,7 @@ All colors MUST be HSL.
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
     --radius: 0.5rem;
-    
+
     /* Sidebar colors */
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
