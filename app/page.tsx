@@ -125,20 +125,20 @@ export default function Home() {
           >
             <div className="flex flex-col items-center lg:items-start gap-[40px] w-full">
               <motion.div 
-                className="w-full text-[#2d2d2d] text-[16px] md:text-[20px] font-bold leading-[24px] md:leading-[30px] text-center lg:text-left"
+                className="w-full text-subtitle text-[#2d2d2d] text-center lg:text-left"
                 variants={fadeInUp}
               >
                 Your Memories, Close to Your Heart
               </motion.div>
               <motion.div 
-                className="w-full text-[#2d2d2d] text-[40px] md:text-[60px] lg:text-[80px] font-bold leading-[50px] md:leading-[70px] lg:leading-[90px] text-center lg:text-left"
+                className="w-full text-display-large text-[#2d2d2d] text-center lg:text-left"
                 variants={fadeInUp}
               >
                 Stories You Can Hold
               </motion.div>
             </div>
             <motion.div 
-              className="w-full text-[#2d2d2d] text-[15px] md:text-[17px] font-normal leading-[22px] md:leading-[27px] text-center lg:text-left"
+              className="w-full text-body-large text-[#2d2d2d] text-center lg:text-left"
               variants={fadeInUp}
             >
               Probably the Closest Thing to Time Travel — Powered by Touch,
@@ -170,13 +170,13 @@ export default function Home() {
         <div className="flex h-[147px] py-[60px] items-start flex-1 border-t-2 border-b-2 border-black/20 gap-0">
           <div className="flex justify-between items-center flex-1">
             <motion.div 
-              className="flex-1 text-black text-center text-[20px] md:text-[24px] lg:text-[32px] font-bold leading-[27px]"
+              className="flex-1 text-black text-center text-heading-4 font-bold"
               variants={scaleIn}
             >
               स्नेह
             </motion.div>
             <motion.div 
-              className="flex-1 text-black text-center text-[20px] md:text-[24px] lg:text-[32px] font-bold leading-[27px]"
+              className="flex-1 text-black text-center text-heading-4 font-bold"
               variants={scaleIn}
             >
               حب
@@ -184,13 +184,13 @@ export default function Home() {
           </div>
           <div className="flex justify-between items-center flex-1">
             <motion.div 
-              className="flex-1 text-black text-center text-[20px] md:text-[24px] lg:text-[32px] font-bold leading-[27px]"
+              className="flex-1 text-black text-center text-heading-4 font-bold"
               variants={scaleIn}
             >
               Amour
             </motion.div>
             <motion.div 
-              className="flex-1 text-black text-center text-[20px] md:text-[24px] lg:text-[32px] font-bold leading-[27px]"
+              className="flex-1 text-black text-center text-heading-4 font-bold"
               variants={scaleIn}
             >
               사랑
@@ -198,13 +198,13 @@ export default function Home() {
           </div>
           <div className="flex justify-between items-center flex-1">
             <motion.div 
-              className="flex-1 text-black text-center text-[20px] md:text-[24px] lg:text-[32px] font-bold leading-[27px]"
+              className="flex-1 text-black text-center text-heading-4 font-bold"
               variants={scaleIn}
             >
               愛
             </motion.div>
             <motion.div 
-              className="flex-1 text-black text-center text-[20px] md:text-[24px] lg:text-[32px] font-bold leading-[27px]"
+              className="flex-1 text-black text-center text-heading-4 font-bold"
               variants={scaleIn}
             >
               אהבה
@@ -301,7 +301,7 @@ export default function Home() {
 
       {/* Products Section */}
       <div className="flex flex-col items-center gap-[60px] w-full px-4 md:px-12 lg:px-[100px] py-[60px] bg-white">
-        <div className="w-full text-[#2d2d2d] text-center text-[24px] md:text-[32px] font-bold leading-[32px] md:leading-[42px]">
+        <div className="w-full text-heading-2 text-[#2d2d2d] text-center">
           Products
         </div>
         <div className="flex flex-col justify-center items-center gap-[60px] w-full">
@@ -315,10 +315,10 @@ export default function Home() {
                 className="h-[250px] md:h-[315px] w-full object-cover rounded-lg"
               />
               <div className="flex flex-col justify-center items-start gap-[10px] w-full">
-                <div className="w-full text-[#2d2d2d] text-[18px] md:text-[20px] font-bold leading-[26px] md:leading-[30px]">
+                <div className="w-full text-heading-4 text-[#2d2d2d]">
                   Snake Chain Necklace 50cm/20&apos;
                 </div>
-                <div className="w-full text-[#2d2d2d] text-[15px] md:text-[17px] font-normal leading-[22px] md:leading-[27px]">
+                <div className="w-full text-price text-[#2d2d2d]">
                   Rs 5000
                 </div>
               </div>
@@ -332,10 +332,10 @@ export default function Home() {
                 className="h-[250px] md:h-[315px] w-full object-cover rounded-lg"
               />
               <div className="flex flex-col justify-center items-start gap-[10px] w-full">
-                <div className="w-full text-[#2d2d2d] text-[18px] md:text-[20px] font-bold leading-[26px] md:leading-[30px]">
+                <div className="w-full text-heading-4 text-[#2d2d2d]">
                   Alta Capture Charm Bracelet
                 </div>
-                <div className="w-full text-[#2d2d2d] text-[15px] md:text-[17px] font-normal leading-[22px] md:leading-[27px]">
+                <div className="w-full text-price text-[#2d2d2d]">
                   Rs 5000
                 </div>
               </div>
@@ -349,10 +349,10 @@ export default function Home() {
                 className="h-[250px] md:h-[315px] w-full object-cover rounded-lg"
               />
               <div className="flex flex-col justify-center items-start gap-[10px] w-full">
-                <div className="w-full text-[#2d2d2d] text-[18px] md:text-[20px] font-bold leading-[26px] md:leading-[30px]">
+                <div className="w-full text-heading-4 text-[#2d2d2d]">
                   You Really Got Me
                 </div>
-                <div className="w-full text-[#2d2d2d] text-[15px] md:text-[17px] font-normal leading-[22px] md:leading-[27px]">
+                <div className="w-full text-body-medium text-[#2d2d2d]">
                   The Kinks
                 </div>
               </div>
@@ -363,7 +363,7 @@ export default function Home() {
 
       {/* How it Works Section */}
       <div className="flex flex-col justify-center items-center gap-[60px] w-full px-4 md:px-12 lg:px-[100px] py-[80px] md:py-[130px] bg-white">
-        <div className="w-full text-[#2d2d2d] text-center text-[24px] md:text-[32px] font-bold leading-[32px] md:leading-[42px]">
+        <div className="w-full text-heading-2 text-[#2d2d2d] text-center">
           How it works
         </div>
         <div className="flex justify-center items-center gap-[60px] w-full">
