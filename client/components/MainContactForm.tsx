@@ -51,7 +51,7 @@ const MainContactForm = () => {
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <Label htmlFor="name" className="text-gray-700 font-medium">
+              <Label htmlFor="name" className="text-label text-gray-700">
                 Full Name
               </Label>
               <Input
@@ -66,7 +66,7 @@ const MainContactForm = () => {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-gray-700 font-medium">
+              <Label htmlFor="email" className="text-label text-gray-700">
                 Email Address
               </Label>
               <Input
@@ -83,7 +83,7 @@ const MainContactForm = () => {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="phone" className="text-gray-700 font-medium">
+            <Label htmlFor="phone" className="text-label text-gray-700">
               Phone Number
             </Label>
             <Input
@@ -99,7 +99,7 @@ const MainContactForm = () => {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="message" className="text-gray-700 font-medium">
+            <Label htmlFor="message" className="text-label text-gray-700">
               Message
             </Label>
             <Textarea
@@ -117,7 +117,7 @@ const MainContactForm = () => {
           <Button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-gradient-to-r from-beige to-baby-pink text-gray-800 font-medium py-3 rounded-lg hover:shadow-lg transform hover:scale-[1.02] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full bg-gradient-to-r from-beige to-baby-pink text-gray-800 text-button py-3 rounded-lg hover:shadow-lg transform hover:scale-[1.02] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isSubmitting ? (
               <div className="flex items-center justify-center space-x-2">

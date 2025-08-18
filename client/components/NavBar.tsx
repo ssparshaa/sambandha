@@ -31,32 +31,32 @@ export default function NavBar() {
               alt="Sambandha logo"
               className="w-7 h-7"
             />
-            <span className="font-bold text-[#2d2d2d] text-lg">Sambandha</span>
+            <span className="text-nav font-bold text-[#2d2d2d]">Sambandha</span>
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-6 lg:gap-8">
             <Link
               href="/product"
-              className="text-[#2d2d2d] hover:text-blue-600 font-medium transition-colors duration-200"
+              className="text-nav text-[#2d2d2d] hover:text-blue-600 transition-colors duration-200"
             >
               Products
             </Link>
             <Link
               href="/about"
-              className="text-[#2d2d2d] hover:text-blue-600 font-medium transition-colors duration-200"
+              className="text-nav text-[#2d2d2d] hover:text-blue-600 transition-colors duration-200"
             >
               About
             </Link>
             <Link
               href="/contact"
-              className="text-[#2d2d2d] hover:text-blue-600 font-medium transition-colors duration-200"
+              className="text-nav text-[#2d2d2d] hover:text-blue-600 transition-colors duration-200"
             >
               Contact
             </Link>
             <Link
               href="/login"
-              className="bg-[#2d2d2d] text-white px-4 py-2 rounded-lg hover:bg-gray-800 font-medium transition-colors duration-200"
+              className="bg-[#2d2d2d] text-white px-4 py-2 rounded-lg hover:bg-gray-800 text-button transition-colors duration-200"
             >
               Login
             </Link>
@@ -83,21 +83,21 @@ export default function NavBar() {
           <div className="px-4 py-4 space-y-3">
             <Link
               href="/product"
-              className="block text-[#2d2d2d] hover:text-blue-600 hover:bg-gray-50 px-3 py-2 rounded-lg font-medium transition-colors duration-200"
+              className="block text-nav text-[#2d2d2d] hover:text-blue-600 hover:bg-gray-50 px-3 py-2 rounded-lg transition-colors duration-200"
               onClick={() => setIsOpen(false)}
             >
               Products
             </Link>
             <Link
               href="/about"
-              className="block text-[#2d2d2d] hover:text-blue-600 hover:bg-gray-50 px-3 py-2 rounded-lg font-medium transition-colors duration-200"
+              className="block text-nav text-[#2d2d2d] hover:text-blue-600 hover:bg-gray-50 px-3 py-2 rounded-lg transition-colors duration-200"
               onClick={() => setIsOpen(false)}
             >
               About
             </Link>
             <Link
               href="/contact"
-              className="block text-[#2d2d2d] hover:text-blue-600 hover:bg-gray-50 px-3 py-2 rounded-lg font-medium transition-colors duration-200"
+              className="block text-nav text-[#2d2d2d] hover:text-blue-600 hover:bg-gray-50 px-3 py-2 rounded-lg transition-colors duration-200"
               onClick={() => setIsOpen(false)}
             >
               Contact
@@ -105,7 +105,7 @@ export default function NavBar() {
             <div className="pt-2 border-t border-gray-100">
               <Link
                 href="/signin"
-                className="block bg-[#2d2d2d] text-white text-center px-4 py-3 rounded-lg hover:bg-gray-800 font-medium transition-colors duration-200"
+                className="block bg-[#2d2d2d] text-white text-center px-4 py-3 rounded-lg hover:bg-gray-800 text-button transition-colors duration-200"
                 onClick={() => setIsOpen(false)}
               >
                 Sign In
