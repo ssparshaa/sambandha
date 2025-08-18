@@ -1,14 +1,36 @@
-// This would be for Next.js App Router: app/product-morgan/page.tsx
-// Or Next.js Pages Router: pages/product-morgan.tsx
+"use client"
 
+import { useState } from "react";
 import { ShoppingBag, Plus, Menu, ArrowUpRight, Instagram, Facebook, Twitter, Youtube, Twitch } from "lucide-react";
 import NavBar from "../../client/components/NavBar";
 
+const CURRENCY_RATES = {
+  USD: 0.0072, 
+  EUR: 0.0061,
+  GBP: 0.0053,
+  INR: 0.65,
+  RUB: 0.60,
+};
+
+const CURRENCY_SYMBOLS = {
+  USD: "$",
+  EUR: "€",
+  GBP: "£",
+  INR: "₹",
+  RUB: "₽",
+};
+
+type Currency = keyof typeof CURRENCY_RATES;
+
 export default function ProductMorgan() {
+  const [currency, setCurrency] = useState<Currency>("USD");
+  const priceNPR = 5000;
+  const convertedPrice = (priceNPR * CURRENCY_RATES[currency]).toFixed(2);
+
   return (
     <div className="flex flex-col w-full min-h-screen bg-white">
       {/* Navigation */}
-            <NavBar />
+      <NavBar />
 
       {/* Main Product Section */}
       <div className="flex flex-col lg:flex-row px-4 md:px-10 items-start gap-6 lg:gap-[25px] w-full mt-8 lg:mt-[54px]">
@@ -33,8 +55,43 @@ export default function ProductMorgan() {
                       Morgan
                     </h1>
                     <div className="flex flex-col items-start gap-2">
-                      <div className="text-[#686363] font-montreal text-lg lg:text-xl font-normal leading-normal">
-                        Rs 5000
+                      <div className="flex items-center gap-3">
+                        <div className="text-[#686363] font-montreal text-lg lg:text-xl font-normal leading-normal">
+                          Rs {priceNPR}
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="text-[#686363] font-montreal text-sm font-normal leading-normal">
+                          {CURRENCY_SYMBOLS[currency]} {convertedPrice}
+                        </div>
+                        <div className="relative">
+                          <select
+                            value={currency}
+                            onChange={e => setCurrency(e.target.value as Currency)}
+                            className="border border-[#E8E8E8] rounded-full px-2 py-1 text-xs bg-white text-[#686363] font-montreal shadow focus:outline-none focus:ring-2 focus:ring-pink-200 transition-all duration-200 appearance-none cursor-pointer"
+                            style={{
+                              minWidth: 60,
+                              WebkitAppearance: "none",
+                              MozAppearance: "none",
+                              appearance: "none",
+                              backgroundColor: "white",
+                              border: "1px solid #E8E8E8",
+                              paddingRight: "1.5rem", // space for arrow
+                            }}
+                          >
+                            <option value="USD">USD</option>
+                            <option value="EUR">EUR</option>
+                            <option value="GBP">GBP</option>
+                            <option value="INR">INR</option>
+                            <option value="RUB">RUB</option>
+                          </select>
+                          {/* Custom minimal down arrow icon */}
+                          <span className="pointer-events-none absolute right-2 top-1/2 transform -translate-y-1/2 text-[#686363]">
+                            <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                              <path d="M4 6l4 4 4-4" stroke="#686363" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+                            </svg>
+                          </span>
+                        </div>
                       </div>
                       <div className="text-[#686363] font-montreal text-xs font-normal leading-normal">
                         incl. local Tax & Shipping.
