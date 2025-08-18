@@ -4,6 +4,8 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion, Variants } from "framer-motion";
 import NavBar from "../client/components/NavBar"; // Adjust the path if necessary
+import InteractivePolaroid from "../client/components/InteractivePolaroid";
+import MobileInteractivePolaroid from "../client/components/MobileInteractivePolaroid";
 import {
   Carousel,
   CarouselContent,
@@ -15,18 +17,17 @@ import {
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showDemo, setShowDemo] = useState(false);
-
   // Animation variants
   const fadeInUp: Variants = {
     hidden: { opacity: 0, y: 60 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: {
         duration: 0.8,
-        ease: [0.6, -0.05, 0.01, 0.99] as [number, number, number, number]
-      }
-    }
+        ease: [0.6, -0.05, 0.01, 0.99] as [number, number, number, number],
+      },
+    },
   };
 
   const staggerContainer: Variants = {
@@ -35,9 +36,9 @@ export default function Home() {
       opacity: 1,
       transition: {
         delayChildren: 0.3,
-        staggerChildren: 0.2
-      }
-    }
+        staggerChildren: 0.2,
+      },
+    },
   };
 
   const slideInLeft: Variants = {
@@ -47,9 +48,9 @@ export default function Home() {
       x: 0,
       transition: {
         duration: 0.8,
-        ease: [0.6, -0.05, 0.01, 0.99] as [number, number, number, number]
-      }
-    }
+        ease: [0.6, -0.05, 0.01, 0.99] as [number, number, number, number],
+      },
+    },
   };
 
   const slideInRight: Variants = {
@@ -59,9 +60,9 @@ export default function Home() {
       x: 0,
       transition: {
         duration: 0.8,
-        ease: [0.6, -0.05, 0.01, 0.99] as [number, number, number, number]
-      }
-    }
+        ease: [0.6, -0.05, 0.01, 0.99] as [number, number, number, number],
+      },
+    },
   };
 
   const scaleIn: Variants = {
@@ -71,39 +72,42 @@ export default function Home() {
       scale: 1,
       transition: {
         duration: 0.6,
-        ease: [0.6, -0.05, 0.01, 0.99] as [number, number, number, number]
-      }
-    }
+        ease: [0.6, -0.05, 0.01, 0.99] as [number, number, number, number],
+      },
+    },
   };
 
   // Polaroid memories data
   const memories = [
     {
       id: 1,
-      image:
-        "https://api.builder.io/api/v1/image/assets/TEMP/5cc000595fda30aae93acb29ea6024aa40a4e7d8?width=667",
-      frame:
-        "https://api.builder.io/api/v1/image/assets/TEMP/10bd7ddb2e9ac2f6a88a4be37b28f999842ae3a3?width=747",
+      image: "/image/birthdayimage.jpg",
+
       rotation: "rotate-3 md:rotate-[7deg]",
-      alt: "Memory 1",
+      alt: "Happy Birthday Celebration",
+      heading: "Happy Birthday!",
+      subheading: "A special day to remember",
+      audioSrc: "/audio/memory-1.aiff",
     },
     {
       id: 2,
-      image:
-        "https://api.builder.io/api/v1/image/assets/TEMP/3b05af66c6e0de826a6dbb92d2e1094805da444f?width=667",
-      frame:
-        "https://api.builder.io/api/v1/image/assets/TEMP/ac84463a2daa2d2085a9bc0edf2ef4d1ae61c87b?width=747",
+      image: "/image/birthdayimage.jpg",
+
       rotation: "-rotate-3 md:-rotate-[7deg]",
-      alt: "Memory 2",
+      alt: "Birthday Memory",
+      heading: "Birthday Surprise",
+      subheading: "The moment we'll never forget",
+      audioSrc: "/audio/memory-2.aiff",
     },
     {
       id: 3,
-      image:
-        "https://api.builder.io/api/v1/image/assets/TEMP/f42889beed5632ae8484b70892bf32e3495aadcf?width=667",
-      frame:
-        "https://api.builder.io/api/v1/image/assets/TEMP/09b05a73488f39840df84313971bbc7195ccb876?width=747",
+      image: "/image/birthdayimage.jpg",
+
       rotation: "rotate-3 md:rotate-[7deg]",
-      alt: "Memory 3",
+      alt: "Birthday Wishes",
+      heading: "Best Wishes",
+      subheading: "Memories that last forever",
+      audioSrc: "/audio/memory-3.aiff",
     },
   ];
 
@@ -113,32 +117,32 @@ export default function Home() {
       <NavBar />
 
       {/* Header */}
-      <motion.div 
+      <motion.div
         className="flex flex-col justify-center items-center gap-[10px] w-full px-4 md:px-12 lg:px-[100px] py-[60px] lg:py-[100px] bg-white"
         initial="hidden"
         animate="visible"
         variants={staggerContainer}
       >
         <div className="flex flex-col lg:flex-row justify-center items-center gap-[28px] w-full">
-          <motion.div 
+          <motion.div
             className="flex flex-col justify-center items-center lg:items-start gap-[40px] flex-1"
             variants={slideInLeft}
           >
             <div className="flex flex-col items-center lg:items-start gap-[40px] w-full">
-              <motion.div 
+              <motion.div
                 className="w-full text-subtitle text-[#2d2d2d] text-center lg:text-left"
                 variants={fadeInUp}
               >
                 Your Memories, Close to Your Heart
               </motion.div>
-              <motion.div 
+              <motion.div
                 className="w-full text-display-large text-[#2d2d2d] text-center lg:text-left"
                 variants={fadeInUp}
               >
                 Stories You Can Hold
               </motion.div>
             </div>
-            <motion.div 
+            <motion.div
               className="w-full text-body-large text-[#2d2d2d] text-center lg:text-left"
               variants={fadeInUp}
             >
@@ -146,9 +150,7 @@ export default function Home() {
               Fueled by Love.
             </motion.div>
           </motion.div>
-          <motion.div
-            variants={slideInRight}
-          >
+          <motion.div variants={slideInRight}>
             <Image
               src="https://api.builder.io/api/v1/image/assets/TEMP/38ec7941626fec7cff55aa25e3ad5aba509d0ad0?width=1212"
               alt="Stories You Can Hold"
@@ -161,7 +163,7 @@ export default function Home() {
       </motion.div>
 
       {/* Logos Section */}
-      <motion.div 
+      <motion.div
         className="flex justify-center items-center gap-[10px] w-full px-4 md:px-12 lg:px-[66px] bg-white"
         initial="hidden"
         whileInView="visible"
@@ -170,13 +172,13 @@ export default function Home() {
       >
         <div className="flex h-[147px] py-[60px] items-start flex-1 border-t-2 border-b-2 border-black/20 gap-0">
           <div className="flex justify-between items-center flex-1">
-            <motion.div 
+            <motion.div
               className="flex-1 text-black text-center text-heading-4 font-bold"
               variants={scaleIn}
             >
               स्नेह
             </motion.div>
-            <motion.div 
+            <motion.div
               className="flex-1 text-black text-center text-heading-4 font-bold"
               variants={scaleIn}
             >
@@ -184,13 +186,13 @@ export default function Home() {
             </motion.div>
           </div>
           <div className="flex justify-between items-center flex-1">
-            <motion.div 
+            <motion.div
               className="flex-1 text-black text-center text-heading-4 font-bold"
               variants={scaleIn}
             >
               Amour
             </motion.div>
-            <motion.div 
+            <motion.div
               className="flex-1 text-black text-center text-heading-4 font-bold"
               variants={scaleIn}
             >
@@ -198,13 +200,13 @@ export default function Home() {
             </motion.div>
           </div>
           <div className="flex justify-between items-center flex-1">
-            <motion.div 
+            <motion.div
               className="flex-1 text-black text-center text-heading-4 font-bold"
               variants={scaleIn}
             >
               愛
             </motion.div>
-            <motion.div 
+            <motion.div
               className="flex-1 text-black text-center text-heading-4 font-bold"
               variants={scaleIn}
             >
@@ -215,7 +217,7 @@ export default function Home() {
       </motion.div>
 
       {/* Memories Section */}
-      <motion.div 
+      <motion.div
         className="w-full px-4 md:px-12 lg:px-[100px] py-[60px] bg-white"
         initial="hidden"
         whileInView="visible"
@@ -225,48 +227,22 @@ export default function Home() {
         {/* Desktop: Show all three polaroids side by side */}
         <div className="hidden md:flex justify-center items-center gap-[30px] md:gap-[60px] w-full">
           {memories.map((memory, index) => (
-            <motion.div
+            <InteractivePolaroid
               key={memory.id}
-              className={`flex flex-col h-[432px] p-[20px] justify-center items-center gap-[10px] flex-1 bg-cover bg-center bg-no-repeat shadow-2xl transform ${memory.rotation}`}
-              style={{
-                backgroundImage: `url('${memory.frame}')`,
-              }}
-              variants={{
-                hidden: { opacity: 0, y: 80, rotate: 0 },
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  rotate: memory.rotation.includes('-') ? -7 : 7,
-                  transition: {
-                    duration: 0.8,
-                    delay: index * 0.2,
-                    ease: [0.6, -0.05, 0.01, 0.99] as [number, number, number, number]
-                  }
-                }
-              }}
-              whileHover={{
-                y: -10,
-                scale: 1.05,
-                rotate: 0,
-                transition: { duration: 0.3 }
-              }}
-            >
-              <Image
-                src={memory.image}
-                alt={memory.alt}
-                width={667}
-                height={400}
-                className="flex-1 w-full h-full object-cover shadow-inner"
-              />
-            </motion.div>
+              id={memory.id}
+              image={memory.image}
+              rotation={memory.rotation}
+              alt={memory.alt}
+              heading={memory.heading}
+              subheading={memory.subheading}
+              audioSrc={memory.audioSrc}
+              index={index}
+            />
           ))}
         </div>
 
         {/* Mobile & Tablet: Swipeable carousel */}
-        <motion.div 
-          className="md:hidden w-full"
-          variants={fadeInUp}
-        >
+        <motion.div className="md:hidden w-full" variants={fadeInUp}>
           <Carousel
             className="w-full max-w-xs sm:max-w-sm mx-auto"
             opts={{
@@ -277,20 +253,15 @@ export default function Home() {
             <CarouselContent>
               {memories.map((memory) => (
                 <CarouselItem key={memory.id}>
-                  <div
-                    className={`flex flex-col h-[320px] sm:h-[380px] p-[15px] sm:p-[20px] justify-center items-center gap-[10px] bg-cover bg-center bg-no-repeat shadow-2xl transform ${memory.rotation}`}
-                    style={{
-                      backgroundImage: `url('${memory.frame}')`,
-                    }}
-                  >
-                    <Image
-                      src={memory.image}
-                      alt={memory.alt}
-                      width={667}
-                      height={400}
-                      className="flex-1 w-full h-full object-cover shadow-inner"
-                    />
-                  </div>
+                  <MobileInteractivePolaroid
+                    id={memory.id}
+                    image={memory.image}
+                    rotation={memory.rotation}
+                    alt={memory.alt}
+                    heading={memory.heading}
+                    subheading={memory.subheading}
+                    audioSrc={memory.audioSrc}
+                  />
                 </CarouselItem>
               ))}
             </CarouselContent>
@@ -317,11 +288,9 @@ export default function Home() {
               />
               <div className="flex flex-col justify-center items-start gap-[10px] w-full">
                 <div className="w-full text-heading-4 text-[#2d2d2d]">
-                  Snake Chain Necklace
+                  Snake Chain Necklace 50cm/20&apos;
                 </div>
-                <div className="w-full text-price text-[#2d2d2d]">
-                  Rs 5000
-                </div>
+                <div className="w-full text-price text-[#2d2d2d]">Rs 5000</div>
               </div>
             </div>
             <div className="flex flex-col items-start gap-[25px] flex-1">
@@ -336,9 +305,7 @@ export default function Home() {
                 <div className="w-full text-heading-4 text-[#2d2d2d]">
                   Alta Capture Charm Bracelet
                 </div>
-                <div className="w-full text-price text-[#2d2d2d]">
-                  Rs 5000
-                </div>
+                <div className="w-full text-price text-[#2d2d2d]">Rs 5000</div>
               </div>
             </div>
             <div className="flex flex-col items-start gap-[25px] flex-1">
@@ -361,10 +328,9 @@ export default function Home() {
           </div>
         </div>
       </div>
-    
 
       {/* How it Works Section */}
-      <div className="flex flex-col justify-center items-center gap-[60px] w-full px-4 md:px-12 lg:px-[100px] py-[80px] md:pt-[100px] md:pb-12 bg-white">
+      <div className="flex flex-col justify-center items-center gap-[60px] w-full px-4 md:px-12 lg:px-[100px] py-[80px] md:py-[130px] bg-white">
         <div className="w-full text-heading-2 text-[#2d2d2d] text-center">
           How it works
         </div>
@@ -415,7 +381,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-
+      
       {/* CTA: Watch a demo */}
       <div className="flex flex-col items-center w-full px-4 md:px-12 lg:px-[100px] pb-20 bg-white">
         <button
@@ -462,6 +428,7 @@ export default function Home() {
           </div>
         </div>
       )}
+
 
       {/* Footer */}
       <div className="flex flex-col justify-center items-center gap-[10px] w-full px-4 md:px-12 lg:px-[100px] pb-[70px] bg-white">
