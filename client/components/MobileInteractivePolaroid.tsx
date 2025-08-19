@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, PanInfo, useMotionValue, useTransform } from "framer-motion";
 import { Play, Pause, Volume2 } from "lucide-react";
 
 interface MobileInteractivePolaroidProps {
@@ -13,6 +13,8 @@ interface MobileInteractivePolaroidProps {
   heading: string;
   subheading: string;
   audioSrc?: string;
+  index?: number;
+  total?: number;
 }
 
 export default function MobileInteractivePolaroid({
@@ -23,10 +25,20 @@ export default function MobileInteractivePolaroid({
   heading,
   subheading,
   audioSrc,
+  index = 0,
+  total = 3,
 }: MobileInteractivePolaroidProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [isReducedMotion, setIsReducedMotion] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
+  
+  // Motion values for drag
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const rotateX = useTransform(y, [-100, 100], [30, -30]);
+  const rotateY = useTransform(x, [-100, 100], [-30, 30]);
 
   const handleAudioToggle = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -40,6 +52,20 @@ export default function MobileInteractivePolaroid({
       setIsPlaying(true);
     }
   };
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setIsReducedMotion(mediaQuery.matches);
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      setIsReducedMotion(e.matches);
+    };
+
+    mediaQuery.addEventListener("change", handleChange);
+    return () => {
+      mediaQuery.removeEventListener("change", handleChange);
+    };
+  }, []);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -60,18 +86,68 @@ export default function MobileInteractivePolaroid({
     };
   }, []);
 
+  // Get position and styling classes based on index
+  const getPositionClass = () => {
+    if (index === 0) return 'mobile-polaroid-front';
+    if (index === 1) return 'mobile-polaroid-mid';
+    return 'mobile-polaroid-back';
+  };
+
+  const getBlurClass = () => {
+    if (index === 0) return 'mobile-front-polaroid';
+    if (index === 1) return 'mobile-depth-blur-light';
+    return 'mobile-depth-blur-heavy';
+  };
+
+  const getFloatAnimation = () => {
+    if (index === 0 || isReducedMotion) return '';
+    if (index === 1) return 'animate-gentle-float-1';
+    return 'animate-gentle-float-2';
+  };
+
+  // Handle drag for front polaroid only
+  const handleDragStart = () => {
+    if (index !== 0) return;
+    setIsDragging(true);
+  };
+
+  const handleDragEnd = (event: any, info: PanInfo) => {
+    if (index !== 0) return;
+    setIsDragging(false);
+    
+    // Snap back to center with some elastic effect
+    x.set(0);
+    y.set(0);
+  };
+
+  // Only front polaroid is interactive
+  const isInteractive = index === 0;
+
   return (
-    <div
-      className={`relative flex flex-col w-full max-w-xs mx-auto bg-white p-3 sm:p-4 shadow-2xl transform ${rotation} cursor-pointer group`}
+    <motion.div
+      className={`mobile-polaroid-stack ${
+        getPositionClass()
+      } ${getBlurClass()} ${getFloatAnimation()} ${
+        isDragging ? 'dragging' : ''
+      }`}
       style={{
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
+        x: isInteractive ? x : 0,
+        y: isInteractive ? y : 0,
+        rotateX: isInteractive ? rotateX : 0,
+        rotateY: isInteractive ? rotateY : 0,
       }}
-      onTouchStart={() => setIsHovered(true)}
-      onTouchEnd={() => setIsHovered(false)}
-      onClick={() => setIsHovered(!isHovered)}
+      drag={isInteractive && !isReducedMotion}
+      dragConstraints={{ left: -100, right: 100, top: -100, bottom: 100 }}
+      dragElastic={0.3}
+      onDragStart={handleDragStart}
+      onDragEnd={handleDragEnd}
+      onTouchStart={() => isInteractive && setIsHovered(true)}
+      onTouchEnd={() => isInteractive && setIsHovered(false)}
+      onClick={() => isInteractive && setIsHovered(!isHovered)}
+      whileHover={isInteractive ? { scale: 1.02 } : undefined}
+      whileTap={isInteractive ? { scale: 0.98 } : undefined}
     >
+      <div className="relative flex flex-col bg-white p-3 sm:p-4 shadow-2xl">
       {/* Audio Element */}
       {audioSrc && (
         <audio ref={audioRef} preload="metadata">
@@ -169,6 +245,7 @@ export default function MobileInteractivePolaroid({
           </motion.div>
         </div>
       )}
-    </div>
+      </div>
+    </motion.div>
   );
 }

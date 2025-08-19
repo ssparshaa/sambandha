@@ -43,6 +43,22 @@ export default function InteractivePolaroid({
     }
   };
 
+  const [isReducedMotion, setIsReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setIsReducedMotion(mediaQuery.matches);
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      setIsReducedMotion(e.matches);
+    };
+
+    mediaQuery.addEventListener("change", handleChange);
+    return () => {
+      mediaQuery.removeEventListener("change", handleChange);
+    };
+  }, []);
+
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
@@ -64,11 +80,18 @@ export default function InteractivePolaroid({
 
   return (
     <motion.div
-      className={`relative w-full max-w-sm mx-auto h-[500px] shadow-2xl transform ${rotation} cursor-pointer group`}
+      className={`relative w-full max-w-sm mx-auto bg-white shadow-2xl transform ${rotation} cursor-pointer group ${
+        !isHovered && !isReducedMotion
+          ? index % 3 === 0
+            ? "animate-glide"
+            : index % 3 === 1
+            ? "animate-glide-reverse"
+            : "animate-glide-subtle"
+          : ""
+      }`}
       style={{
-        backgroundSize: "contain",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
+        padding: "20px 20px 60px 20px",
+        minHeight: "500px",
       }}
       variants={{
         hidden: { opacity: 0, y: 80, rotate: 0 },
@@ -101,8 +124,8 @@ export default function InteractivePolaroid({
         </audio>
       )}
 
-      {/* Main Image Container - Positioned to fit in the black area of polaroid */}
-      <div className="absolute top-[40px] left-[40px] right-[40px] bottom-[140px]">
+      {/* Main Image Container */}
+      <div className="relative w-full aspect-square mb-4">
         <Image
           src={image}
           alt={alt}
@@ -112,10 +135,10 @@ export default function InteractivePolaroid({
         />
       </div>
 
-      {/* Content and Audio Controls in White Bottom Area */}
-      <div className="absolute bottom-[20px] left-[40px] right-[40px] flex flex-col items-center gap-2">
+      {/* Content and Audio Controls Below Image (Polaroid Style) */}
+      <div className="flex flex-col items-center gap-2">
         {/* Text Content */}
-        <div className="text-center text-gray-800">
+        <div className="text-center text-gray-800 mb-3">
           <h3 className="text-base font-semibold leading-tight">{heading}</h3>
           <p className="text-xs opacity-80 leading-tight">{subheading}</p>
         </div>
