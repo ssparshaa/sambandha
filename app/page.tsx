@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion, Variants } from "framer-motion";
 import NavBar from "../client/components/NavBar"; // Adjust the path if necessary
 import InteractivePolaroid from "../client/components/InteractivePolaroid";
-import MobileInteractivePolaroid from "../client/components/MobileInteractivePolaroid";
+import StackedPolaroids from "../client/components/StackedPolaroids";
 import {
   Carousel,
   CarouselContent,
@@ -241,33 +241,9 @@ export default function Home() {
           ))}
         </div>
 
-        {/* Mobile & Tablet: Swipeable carousel */}
+        {/* Mobile & Tablet: Stacked Polaroids */}
         <motion.div className="md:hidden w-full" variants={fadeInUp}>
-          <Carousel
-            className="w-full max-w-xs sm:max-w-sm mx-auto"
-            opts={{
-              align: "center",
-              loop: true,
-            }}
-          >
-            <CarouselContent>
-              {memories.map((memory) => (
-                <CarouselItem key={memory.id}>
-                  <MobileInteractivePolaroid
-                    id={memory.id}
-                    image={memory.image}
-                    rotation={memory.rotation}
-                    alt={memory.alt}
-                    heading={memory.heading}
-                    subheading={memory.subheading}
-                    audioSrc={memory.audioSrc}
-                  />
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="left-2 sm:left-4" />
-            <CarouselNext className="right-2 sm:right-4" />
-          </Carousel>
+          <StackedPolaroids memories={memories} />
         </motion.div>
       </motion.div>
 

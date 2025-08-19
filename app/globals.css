@@ -217,3 +217,191 @@ body {
 .read-the-docs {
   color: #888;
 }
+
+/* Glider Effect for Polaroids */
+@keyframes glide {
+  0% {
+    transform: translateX(0px);
+  }
+  25% {
+    transform: translateX(8px);
+  }
+  50% {
+    transform: translateX(-4px);
+  }
+  75% {
+    transform: translateX(6px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+@keyframes glide-reverse {
+  0% {
+    transform: translateX(0px);
+  }
+  25% {
+    transform: translateX(-8px);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+  75% {
+    transform: translateX(-6px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+@keyframes glide-subtle {
+  0% {
+    transform: translateX(0px);
+  }
+  33% {
+    transform: translateX(5px);
+  }
+  66% {
+    transform: translateX(-3px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+.animate-glide {
+  animation: glide 8s ease-in-out infinite;
+}
+
+.animate-glide-reverse {
+  animation: glide-reverse 9s ease-in-out infinite;
+}
+
+.animate-glide-subtle {
+  animation: glide-subtle 7s ease-in-out infinite;
+}
+
+/* Mobile Stack Depth Blur Effects */
+.mobile-depth-blur-light {
+  filter: blur(1px);
+  opacity: 0.7;
+  transform-origin: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-depth-blur-heavy {
+  filter: blur(2px);
+  opacity: 0.5;
+  transform-origin: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-front-polaroid {
+  filter: blur(0px);
+  opacity: 1;
+  transform-origin: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: grab;
+}
+
+.mobile-front-polaroid:active {
+  cursor: grabbing;
+}
+
+.mobile-front-polaroid.dragging {
+  transition: none;
+  z-index: 10;
+}
+
+/* Background Polaroid Gentle Float */
+@keyframes gentle-float-1 {
+  0%, 100% { transform: translate(-50%, -50%) translateY(-20px) rotate(-2deg) translateY(0px); }
+  50% { transform: translate(-50%, -50%) translateY(-20px) rotate(-2deg) translateY(-2px); }
+}
+
+@keyframes gentle-float-2 {
+  0%, 100% { transform: translate(-50%, -50%) translateY(-40px) rotate(1deg) translateY(0px); }
+  50% { transform: translate(-50%, -50%) translateY(-40px) rotate(1deg) translateY(2px); }
+}
+
+.animate-gentle-float-1 {
+  animation: gentle-float-1 4s ease-in-out infinite;
+}
+
+.animate-gentle-float-2 {
+  animation: gentle-float-2 5s ease-in-out infinite;
+}
+
+/* 3D Perspective Utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.perspective-1500 {
+  perspective: 1500px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+/* Stacked Cards 3D Effects */
+.stacked-cards-container {
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+.stacked-card {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.stacked-card.front {
+  transform: translateZ(0px) rotateX(0deg) rotateY(0deg);
+  filter: blur(0px);
+  opacity: 1;
+  z-index: 3;
+}
+
+.stacked-card.middle {
+  transform: translateZ(-50px) rotateX(15deg) rotateY(-10deg) translateY(-10px);
+  filter: blur(1px);
+  opacity: 0.8;
+  z-index: 2;
+}
+
+.stacked-card.back {
+  transform: translateZ(-100px) rotateX(25deg) rotateY(-15deg) translateY(-20px);
+  filter: blur(2px);
+  opacity: 0.6;
+  z-index: 1;
+}
+
+/* Stacked Polaroid Layout */
+.mobile-polaroid-stack {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  max-width: 280px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-polaroid-front {
+  transform: translate(-50%, -50%);
+  z-index: 3;
+}
+
+.mobile-polaroid-mid {
+  transform: translate(-50%, -50%) translateY(-20px) rotate(-2deg);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.mobile-polaroid-back {
+  transform: translate(-50%, -50%) translateY(-40px) rotate(1deg);
+  z-index: 1;
+  pointer-events: none;
+}
