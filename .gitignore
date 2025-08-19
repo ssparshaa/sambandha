@@ -7,10 +7,22 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencies
 node_modules
+
+# Build outputs
 dist
 dist-ssr
+.next/     # Next.js build output
+out/       # Next.js static export output
+
+# Local environment
 *.local
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+!.env      # keep main .env if you want to commit it
 
 # Editor directories and files
 .vscode/*
@@ -18,11 +30,10 @@ dist-ssr
 .idea
 .DS_Store
 *.suo
-.next/
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
 
+# Config
 .config/
-!.env
