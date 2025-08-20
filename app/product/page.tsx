@@ -5,6 +5,7 @@ import { ShoppingBag, Plus, Menu, ArrowUpRight, Instagram, Facebook, Twitter, Yo
 import NavBar from "../../client/components/NavBar";
 
 const CURRENCY_RATES = {
+  NPR: 1,
   USD: 0.0072, 
   EUR: 0.0061,
   GBP: 0.0053,
@@ -13,6 +14,7 @@ const CURRENCY_RATES = {
 };
 
 const CURRENCY_SYMBOLS = {
+  NPR: "₹",
   USD: "$",
   EUR: "€",
   GBP: "£",
@@ -20,12 +22,46 @@ const CURRENCY_SYMBOLS = {
   RUB: "₽",
 };
 
+const COLOR_OPTIONS = [
+  { name: "Gold", gradient: "from-[#AE7B4B] via-[#B6895E] to-[#E9DDD2]", border: "border-transparent" },
+  { name: "Silver", gradient: "from-[#CFCFCF] via-[#CFCFCF] to-[#949494]", border: "border-transparent" },
+  { name: "Champagne", gradient: "from-[#BBA14F] via-[#BBA14F] to-[#E9E3D2]", border: "border-transparent" },
+];
+
+const MORE_PRODUCTS = [
+  {
+    name: "Snake Chain Necklace 50'",
+    image: "https://api.builder.io/api/v1/image/assets/TEMP/8bc813788c980f74b6475e17a8e83c0133563613?width=740",
+    price: 5000,
+    colors: [
+      { bg: "bg-yellow-600", border: "border-[#151313]" },
+      { bg: "bg-gray-300", border: "border-[#151313] border-opacity-20" },
+    ],
+    description: "18ct Gold Vermeil",
+  },
+];
+
+
 type Currency = keyof typeof CURRENCY_RATES;
 
 export default function ProductMorgan() {
+  
   const [currency, setCurrency] = useState<Currency>("USD");
   const priceNPR = 5000;
   const convertedPrice = (priceNPR * CURRENCY_RATES[currency]).toFixed(2);
+  const [selectedColor, setSelectedColor] = useState(COLOR_OPTIONS[0].name);
+
+  const [moreProductColors, setMoreProductColors] = useState(
+    MORE_PRODUCTS.map(() => COLOR_OPTIONS[0].name)
+  );
+
+  const handleMoreProductColorChange = (productIdx: number, colorName: string) => {
+    setMoreProductColors((prev) => {
+      const updated = [...prev];
+      updated[productIdx] = colorName;
+      return updated;
+    });
+  };
 
   return (
     <div className="flex flex-col w-full min-h-screen bg-white">
@@ -55,14 +91,11 @@ export default function ProductMorgan() {
                       Morgan
                     </h1>
                     <div className="flex flex-col items-start gap-2">
-                      <div className="flex items-center gap-3">
-                        <div className="text-[#686363] font-montreal text-lg lg:text-xl font-normal leading-normal">
-                          Rs {priceNPR}
-                        </div>
-                      </div>
                       <div className="flex items-center gap-2">
-                        <div className="text-[#686363] font-montreal text-sm font-normal leading-normal">
-                          {CURRENCY_SYMBOLS[currency]} {convertedPrice}
+                        <div className="text-[#686363] font-montreal text-lg lg:text-xl font-normal leading-normal">
+                          {currency === "NPR"
+                            ? `${CURRENCY_SYMBOLS[currency]} ${priceNPR}`
+                            : `${CURRENCY_SYMBOLS[currency]} ${convertedPrice}`}
                         </div>
                         <div className="relative">
                           <select
@@ -79,6 +112,7 @@ export default function ProductMorgan() {
                               paddingRight: "1.5rem", // space for arrow
                             }}
                           >
+                            <option value="NPR">NPR</option>
                             <option value="USD">USD</option>
                             <option value="EUR">EUR</option>
                             <option value="GBP">GBP</option>
@@ -104,22 +138,28 @@ export default function ProductMorgan() {
                 </div>
               </div>
               
-              {/* Color Selection */}
+              {/* Main Product Color Selection */}
               <div className="flex flex-col items-start gap-4">
                 <div className="flex items-start gap-2">
                   <span className="text-[#686363] font-montreal text-xs font-normal leading-normal">
                     Select Color
                   </span>
                   <span className="text-[#1e1e1e] font-montreal text-xs font-medium leading-normal">
-                    Gold
+                    {selectedColor}
                   </span>
                 </div>
-                
-                {/* Color Options */}
                 <div className="flex items-center gap-4">
-                  <div className="w-[26px] h-[26px] rounded-full bg-gradient-to-b from-[#AE7B4B] via-[#B6895E] to-[#E9DDD2] border-2 border-transparent"></div>
-                  <div className="w-[26px] h-[26px] rounded-full bg-gradient-to-b from-[#CFCFCF] via-[#CFCFCF] to-[#949494] border-2 border-transparent"></div>
-                  <div className="w-[26px] h-[26px] rounded-full bg-gradient-to-b from-[#BBA14F] via-[#BBA14F] to-[#E9E3D2] border-2 border-[#1E1E1E]"></div>
+                  {COLOR_OPTIONS.map((color) => (
+                    <button
+                      key={color.name}
+                      type="button"
+                      onClick={() => setSelectedColor(color.name)}
+                      className={`w-[26px] h-[26px] rounded-full bg-gradient-to-b ${color.gradient} border-2 transition-all duration-150 ${
+                        selectedColor === color.name ? "border-[#1E1E1E] scale-110" : color.border
+                      }`}
+                      aria-label={color.name}
+                    />
+                  ))}
                 </div>
               </div>
             </div>
@@ -164,39 +204,47 @@ export default function ProductMorgan() {
         <h2 className="text-[#686363] font-montreal text-xl font-normal leading-normal">
           More Products
         </h2>
-        
-        <div className="flex flex-col md:flex-row items-start gap-5 w-full">
-          <img 
-            src="https://api.builder.io/api/v1/image/assets/TEMP/8bc813788c980f74b6475e17a8e83c0133563613?width=740" 
-            alt="Snake Chain Necklace"
-            className="w-full md:w-[370px] h-[250px] md:h-[330px] object-cover"
-          />
-          
-          <div className="flex flex-col items-start gap-2.5 flex-1">
-            <div className="flex flex-col items-start gap-[14px] w-full">
-              <div className="flex items-center gap-2.5 w-full">
-                <h3 className="text-[#151313] font-reckless text-xl md:text-2xl font-normal leading-normal">
-                  Snake Chain Necklace 50'
-                </h3>
-                <ArrowUpRight className="w-6 h-6 text-[#151313]" />
-              </div>
-              
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-5">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-[38px] h-[38px] rounded-full border border-[#151313] bg-yellow-600"></div>
-                  <div className="w-[34px] h-[34px] rounded-full border border-[#151313] border-opacity-20 bg-gray-300"></div>
+        {MORE_PRODUCTS.map((product, idx) => (
+          <div key={product.name + idx} className="flex flex-col md:flex-row items-start gap-5 w-full">
+            <img 
+              src={product.image}
+              alt={product.name}
+              className="w-full md:w-[370px] h-[250px] md:h-[330px] object-cover"
+            />
+            <div className="flex flex-col items-start gap-2.5 flex-1">
+              <div className="flex flex-col items-start gap-[14px] w-full">
+                <div className="flex items-center gap-2.5 w-full">
+                  <h3 className="text-[#151313] font-reckless text-xl md:text-2xl font-normal leading-normal">
+                    {product.name}
+                  </h3>
+                  <ArrowUpRight className="w-6 h-6 text-[#151313]" />
                 </div>
-                <span className="text-[#151313] font-montreal text-sm font-normal leading-normal">
-                  18ct Gold Vermeil
-                </span>
-              </div>
-              
-              <div className="text-[#151313] font-montreal text-xl font-normal leading-normal">
-                Rs 5000
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-5">
+                  {/* Color Options for More Products */}
+                  <div className="flex items-center gap-4">
+                    {COLOR_OPTIONS.map((color) => (
+                      <button
+                        key={color.name}
+                        type="button"
+                        onClick={() => handleMoreProductColorChange(idx, color.name)}
+                        className={`w-[26px] h-[26px] rounded-full bg-gradient-to-b ${color.gradient} border-2 transition-all duration-150 ${
+                          moreProductColors[idx] === color.name ? "border-[#1E1E1E] scale-110" : color.border
+                        }`}
+                        aria-label={color.name}
+                      />
+                    ))}
+                  </div>
+                  <span className="text-[#151313] font-montreal text-sm font-normal leading-normal">
+                    {product.description}
+                  </span>
+                </div>
+                <div className="text-[#151313] font-montreal text-xl font-normal leading-normal">
+                  Rs {product.price}
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        ))}
       </div>
 
       {/* Footer */}
@@ -266,5 +314,5 @@ export default function ProductMorgan() {
         </div>
       </footer>
     </div>
-  );
-}
+    );
+  }
