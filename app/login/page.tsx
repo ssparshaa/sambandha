@@ -25,7 +25,7 @@ export default function Login() {
         <div className="w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-0">
           {/* Left side - Image */}
           <div className="w-full lg:w-auto flex-shrink-0 order-2 lg:order-1 flex items-center">
-            <div className="w-full max-w-[404px] h-[460px] lg:h-[540px] mx-auto lg:mx-0 lg:ml-[146px] flex items-center">
+            <div className="w-full max-w-[480px] h-[500px] lg:h-[620px] mx-auto lg:mx-0 lg:ml-[146px] flex items-center">
               <img
                 src="https://api.builder.io/api/v1/image/assets/TEMP/78ced4488ae24383914ba9914474f7e495d167c0?width=1076"
                 alt=""
@@ -34,10 +34,10 @@ export default function Login() {
             </div>
           </div>
 
-          {/* Right side - Login Form */}
+          {/* Right side - Login Form in Card */}
           <div className="w-full lg:w-auto flex-shrink-0 order-1 lg:order-2 lg:mr-[150px] lg:ml-[100px]">
             <div className="w-full max-w-[404px] mx-auto lg:mx-0">
-              <div className="relative text-[17px] lg:text-[19px]">
+              <div className="bg-white rounded-xl shadow-lg p-8 relative text-[17px] lg:text-[19px]"> {/* Card styles */}
                 {/* Welcome back title */}
                 <h1 className="text-black font-poppins text-[30px] lg:text-[38px] font-medium leading-normal mb-4">
                   Welcome back!

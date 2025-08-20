@@ -37,23 +37,34 @@ export default function NavBar() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-6 lg:gap-8">
             <Link
+              href="/"
+              className="block text-nav text-[#2d2d2d] hover:text-blue-600 px-3 py-2 rounded-lg transition-colors duration-200"
+              onClick={() => setIsOpen(false)}
+            >
+              Home
+            </Link>
+
+            <Link
               href="/product"
               className="text-nav text-[#2d2d2d] hover:text-blue-600 transition-colors duration-200"
             >
               Products
             </Link>
+
             <Link
               href="/about"
               className="text-nav text-[#2d2d2d] hover:text-blue-600 transition-colors duration-200"
             >
               About
             </Link>
+
             <Link
               href="/contact"
               className="text-nav text-[#2d2d2d] hover:text-blue-600 transition-colors duration-200"
             >
               Contact
             </Link>
+
             <Link
               href="/login"
               className="bg-[#2d2d2d] text-white px-4 py-2 rounded-lg hover:bg-gray-800 text-button transition-colors duration-200"
@@ -82,12 +93,21 @@ export default function NavBar() {
         <div className="md:hidden bg-white border-t border-gray-100 shadow-lg">
           <div className="px-4 py-4 space-y-3">
             <Link
+              href="/home"
+              className="block text-nav text-[#2d2d2d] hover:text-blue-600 px-3 py-2 rounded-lg transition-colors duration-200"
+              onClick={() => setIsOpen(false)}
+            >
+              Home
+            </Link>
+
+            <Link
               href="/product"
               className="block text-nav text-[#2d2d2d] hover:text-blue-600 hover:bg-gray-50 px-3 py-2 rounded-lg transition-colors duration-200"
               onClick={() => setIsOpen(false)}
             >
               Products
             </Link>
+
             <Link
               href="/about"
               className="block text-nav text-[#2d2d2d] hover:text-blue-600 hover:bg-gray-50 px-3 py-2 rounded-lg transition-colors duration-200"
@@ -95,6 +115,7 @@ export default function NavBar() {
             >
               About
             </Link>
+
             <Link
               href="/contact"
               className="block text-nav text-[#2d2d2d] hover:text-blue-600 hover:bg-gray-50 px-3 py-2 rounded-lg transition-colors duration-200"
@@ -102,6 +123,7 @@ export default function NavBar() {
             >
               Contact
             </Link>
+
             <div className="pt-2 border-t border-gray-100">
               <Link
                 href="/signin"
