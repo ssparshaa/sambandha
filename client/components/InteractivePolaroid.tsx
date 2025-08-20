@@ -80,7 +80,7 @@ export default function InteractivePolaroid({
 
   return (
     <motion.div
-      className={`relative w-full max-w-sm mx-auto bg-white shadow-2xl transform ${rotation} cursor-pointer group ${
+      className={`relative w-full max-w-[280px] sm:max-w-[320px] mx-auto bg-white shadow-2xl transform ${rotation} cursor-pointer group ${
         !isHovered && !isReducedMotion
           ? index % 3 === 0
             ? "animate-glide"
@@ -90,8 +90,8 @@ export default function InteractivePolaroid({
           : ""
       }`}
       style={{
-        padding: "20px 20px 60px 20px",
-        minHeight: "500px",
+        padding: "12px 12px 35px 12px",
+        minHeight: "320px",
       }}
       variants={{
         hidden: { opacity: 0, y: 80, rotate: 0 },

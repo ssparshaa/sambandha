@@ -1281,6 +1281,9 @@ video {
 .max-w-\[193px\] {
   max-width: 193px;
 }
+.max-w-\[280px\] {
+  max-width: 280px;
+}
 .max-w-\[404px\] {
   max-width: 404px;
 }
@@ -4012,6 +4015,10 @@ body {
 
   .sm\:w-4 {
     width: 1rem;
+  }
+
+  .sm\:max-w-\[320px\] {
+    max-width: 320px;
   }
 
   .sm\:max-w-sm {

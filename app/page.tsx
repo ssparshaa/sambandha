@@ -81,7 +81,7 @@ export default function Home() {
   const memories = [
     {
       id: 1,
-      image: "/image/birthdayimage.jpg",
+      image: "/image/sweta.jpeg",
 
       rotation: "rotate-3 md:rotate-[7deg]",
       alt: "Happy Birthday Celebration",
@@ -357,21 +357,27 @@ export default function Home() {
           </div>
         </div>
       </div>
-      
+
       {/* CTA: Watch a demo */}
       <div className="flex flex-col items-center w-full px-4 md:px-12 lg:px-[100px] pb-20 bg-white">
         <button
           onClick={() => setShowDemo(true)}
           className="bg-[#2d2d2d] text-white text-lg font-bold px-8 py-3 rounded-full shadow hover:bg-[#444] transition-colors duration-200 flex items-center gap-2"
         >
-          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-            <circle cx="11" cy="11" r="11" fill="#fff" fillOpacity="0.15"/>
-            <polygon points="8,6 16,11 8,16" fill="#fff"/>
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 22 22"
+            fill="none"
+            aria-hidden="true"
+          >
+            <circle cx="11" cy="11" r="11" fill="#fff" fillOpacity="0.15" />
+            <polygon points="8,6 16,11 8,16" fill="#fff" />
           </svg>
           Watch a demo
         </button>
       </div>
-            
+
       {showDemo && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/10 backdrop-blur-sm">
           <div className="relative bg-white rounded-3xl shadow-2xl max-w-5xl w-full p-10 flex flex-col items-center">
@@ -382,8 +388,19 @@ export default function Home() {
               aria-label="Close"
             >
               <svg width="24" height="24" viewBox="0 0 22 22" fill="none">
-                <circle cx="11" cy="11" r="11" fill="#686363" fillOpacity="0.08"/>
-                <path d="M7 7L15 15M15 7L7 15" stroke="#686363" strokeWidth="2" strokeLinecap="round"/>
+                <circle
+                  cx="11"
+                  cy="11"
+                  r="11"
+                  fill="#686363"
+                  fillOpacity="0.08"
+                />
+                <path
+                  d="M7 7L15 15M15 7L7 15"
+                  stroke="#686363"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
               </svg>
             </button>
             <div className="w-full aspect-video rounded-lg overflow-hidden bg-black">
@@ -404,7 +421,6 @@ export default function Home() {
           </div>
         </div>
       )}
-
 
       {/* Footer */}
       <div className="flex flex-col justify-center items-center gap-[10px] w-full px-4 md:px-12 lg:px-[100px] pb-[70px] bg-white">

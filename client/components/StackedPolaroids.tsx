@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, PanInfo } from "framer-motion";
 import { Play, Pause, Volume2 } from "lucide-react";
 
 interface PolaroidData {
@@ -68,6 +68,22 @@ export default function StackedPolaroids({ memories }: StackedPolaroidsProps) {
     setCurrentIndex((prev) => (prev - 1 + memories.length) % memories.length);
   };
 
+  // Handle swipe gestures
+  const handleDragEnd = (event: any, info: PanInfo) => {
+    const { offset, velocity } = info;
+    
+    // Check if swipe was significant enough (distance or velocity)
+    if (Math.abs(offset.x) > 50 || Math.abs(velocity.x) > 300) {
+      if (offset.x > 0) {
+        // Swiped right - go to previous
+        prevCard();
+      } else {
+        // Swiped left - go to next
+        nextCard();
+      }
+    }
+  };
+
   // Get card position and styling based on its relationship to current index
   const getCardVariant = (index: number) => {
     const position = (index - currentIndex + memories.length) % memories.length;
@@ -81,37 +97,33 @@ export default function StackedPolaroids({ memories }: StackedPolaroidsProps) {
           scale: 1,
           opacity: 1,
           y: 0,
-          filter: "blur(0px)",
         };
       case 1: // Middle card
         return {
-          z: -50,
-          rotateX: 15,
-          rotateY: -10,
-          scale: 0.95,
-          opacity: 0.8,
-          y: -10,
-          filter: "blur(1px)",
+          z: -30,
+          rotateX: 8,
+          rotateY: -5,
+          scale: 0.96,
+          opacity: 0.7,
+          y: -8,
         };
       case 2: // Back card
         return {
-          z: -100,
-          rotateX: 25,
-          rotateY: -15,
-          scale: 0.9,
-          opacity: 0.6,
-          y: -20,
-          filter: "blur(2px)",
+          z: -60,
+          rotateX: 12,
+          rotateY: -8,
+          scale: 0.92,
+          opacity: 0.5,
+          y: -16,
         };
       default: // Hidden cards
         return {
-          z: -150,
-          rotateX: 35,
-          rotateY: -20,
-          scale: 0.85,
-          opacity: 0.3,
-          y: -30,
-          filter: "blur(3px)",
+          z: -90,
+          rotateX: 15,
+          rotateY: -10,
+          scale: 0.88,
+          opacity: 0,
+          y: -24,
         };
     }
   };
@@ -127,25 +139,29 @@ export default function StackedPolaroids({ memories }: StackedPolaroidsProps) {
         }}
       >
         {memories.map((memory, index) => {
-          const variant = getCardVariant(index);
           const position = (index - currentIndex + memories.length) % memories.length;
           const isActive = position === 0;
           
+          // Only render the active card
+          if (!isActive) return null;
+          
           return (
             <motion.div
-              key={memory.id}
+              key={`${memory.id}-${currentIndex}`}
               className="absolute inset-0 cursor-pointer"
-              style={{
-                transformStyle: "preserve-3d",
-              }}
-              animate={variant}
+              initial={{ opacity: 0, scale: 0.9, x: 100 }}
+              animate={{ opacity: 1, scale: 1, x: 0 }}
+              exit={{ opacity: 0, scale: 0.9, x: -100 }}
               transition={{
-                duration: isReducedMotion ? 0.1 : 0.6,
+                duration: isReducedMotion ? 0.1 : 0.4,
                 ease: [0.4, 0, 0.2, 1],
               }}
-              onClick={isActive ? nextCard : undefined}
-              whileHover={isActive ? { scale: 1.02 } : undefined}
-              whileTap={isActive ? { scale: 0.98 } : undefined}
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.2}
+              onDragEnd={handleDragEnd}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
             >
               <div className="w-full h-full bg-white rounded-lg shadow-2xl p-4 flex flex-col">
                 {/* Audio Element */}
@@ -272,16 +288,6 @@ export default function StackedPolaroids({ memories }: StackedPolaroidsProps) {
           />
         ))}
       </div>
-
-      {/* Tap indicator for front card */}
-      <motion.div
-        className="absolute bottom-16 left-1/2 transform -translate-x-1/2 text-center text-gray-500 text-sm"
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1, duration: 0.5 }}
-      >
-        Tap to flip through memories
-      </motion.div>
     </div>
   );
 }
