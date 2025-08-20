@@ -42,11 +42,9 @@ const MORE_PRODUCTS = [
   },
 ];
 
-
 type Currency = keyof typeof CURRENCY_RATES;
 
 export default function ProductMorgan() {
-  
   const [currency, setCurrency] = useState<Currency>("USD");
   const priceNPR = 5000;
   const convertedPrice = (priceNPR * CURRENCY_RATES[currency]).toFixed(2);
@@ -70,7 +68,7 @@ export default function ProductMorgan() {
       <NavBar />
 
       {/* Main Product Section */}
-      <div className="flex flex-col lg:flex-row px-4 md:px-10 items-start gap-6 lg:gap-[25px] w-full mt-8 lg:mt-[54px]">
+      <div className="flex flex-col lg:flex-row px-4 md:px-12 lg:px-[100px] items-start gap-6 lg:gap-[25px] w-full mt-8 lg:mt-[54px]">
         {/* Product Image */}
         <div className="w-full lg:flex-1">
           <img 
@@ -110,7 +108,7 @@ export default function ProductMorgan() {
                               appearance: "none",
                               backgroundColor: "white",
                               border: "1px solid #E8E8E8",
-                              paddingRight: "1.5rem", // space for arrow
+                              paddingRight: "1.5rem",
                             }}
                           >
                             <option value="NPR">NPR</option>
@@ -120,7 +118,6 @@ export default function ProductMorgan() {
                             <option value="INR">INR</option>
                             <option value="RUB">RUB</option>
                           </select>
-                          {/* Custom minimal down arrow icon */}
                           <span className="pointer-events-none absolute right-2 top-1/2 transform -translate-y-1/2 text-[#686363]">
                             <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                               <path d="M4 6l4 4 4-4" stroke="#686363" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -201,7 +198,7 @@ export default function ProductMorgan() {
       </div>
 
       {/* More Products Section */}
-      <div className="flex px-4 md:px-10 py-[30px] flex-col justify-center items-start gap-5 w-full bg-[#fae7e7] mt-16 mb-20">
+      <div className="flex px-4 md:px-12 lg:px-[100px] py-[30px] flex-col justify-center items-start gap-5 w-full bg-[#fae7e7] mt-16 mb-20">
         <h2 className="text-[#686363] font-montreal text-xl font-normal leading-normal">
           More Products
         </h2>
@@ -249,6 +246,6 @@ export default function ProductMorgan() {
       </div>
 
       <Footer />
-     </div>
-    );
-  }
+    </div>
+  );
+}
