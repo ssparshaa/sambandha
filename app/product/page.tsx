@@ -1,8 +1,9 @@
 "use client"
 
 import { useState } from "react";
-import { ShoppingBag, Plus, Menu, ArrowUpRight, Instagram, Facebook, Twitter, Youtube, Twitch } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import NavBar from "../../client/components/NavBar";
+import Footer from "client/components/Footer";
 
 const CURRENCY_RATES = {
   NPR: 1,
@@ -200,7 +201,7 @@ export default function ProductMorgan() {
       </div>
 
       {/* More Products Section */}
-      <div className="flex px-4 md:px-10 py-[30px] flex-col justify-center items-start gap-5 w-full bg-[#fae7e7] mt-16">
+      <div className="flex px-4 md:px-10 py-[30px] flex-col justify-center items-start gap-5 w-full bg-[#fae7e7] mt-16 mb-20">
         <h2 className="text-[#686363] font-montreal text-xl font-normal leading-normal">
           More Products
         </h2>
@@ -247,72 +248,7 @@ export default function ProductMorgan() {
         ))}
       </div>
 
-      {/* Footer */}
-      <footer className="flex flex-col lg:flex-row px-4 md:px-10 py-12 lg:py-[100px] justify-center items-center gap-8 lg:gap-[50px] w-full">
-        <div className="flex flex-col justify-center items-center gap-2.5 w-full lg:flex-1">
-          <img 
-            src="https://api.builder.io/api/v1/image/assets/TEMP/a881ded5b60a10e80e0598cc5507203c8174a571?width=532" 
-            alt="Sambandha"
-            className="w-[200px] lg:w-[266px] h-[50px] lg:h-[67px]"
-          />
-          
-          <div className="flex flex-col items-center gap-5">
-            <div className="text-[#656665] font-reckless text-lg lg:text-xl italic font-normal leading-[22px] font-variant-caps">
-              FOLLOW US ON
-            </div>
-            
-            <div className="flex items-start gap-4 lg:gap-5">
-              <div className="relative">
-                <div className="w-10 lg:w-12 h-10 lg:h-12 rounded-full border border-[#151313] border-opacity-40 backdrop-blur-[3px]"></div>
-                <Instagram className="w-5 lg:w-6 h-5 lg:h-6 text-[#151313] absolute top-2.5 lg:top-3 left-2.5 lg:left-3" />
-              </div>
-              <div className="relative">
-                <div className="w-10 lg:w-12 h-10 lg:h-12 rounded-full border border-[#151313] border-opacity-40 backdrop-blur-[3px]"></div>
-                <Facebook className="w-5 lg:w-6 h-5 lg:h-6 text-[#151313] absolute top-2.5 lg:top-3 left-2.5 lg:left-3" />
-              </div>
-              <div className="relative">
-                <div className="w-10 lg:w-12 h-10 lg:h-12 rounded-full border border-[#151313] border-opacity-40 backdrop-blur-[3px]"></div>
-                <Twitter className="w-5 lg:w-6 h-5 lg:h-6 text-[#151313] absolute top-2.5 lg:top-3 left-2.5 lg:left-3" />
-              </div>
-              <div className="relative">
-                <div className="w-10 lg:w-12 h-10 lg:h-12 rounded-full border border-[#151313] border-opacity-40 backdrop-blur-[3px]"></div>
-                <Youtube className="w-5 lg:w-6 h-5 lg:h-6 text-[#151313] absolute top-2.5 lg:top-3 left-2.5 lg:left-3" />
-              </div>
-              <div className="relative">
-                <div className="w-10 lg:w-12 h-10 lg:h-12 rounded-full border border-[#151313] border-opacity-40 backdrop-blur-[3px]"></div>
-                <Twitch className="w-5 lg:w-6 h-5 lg:h-6 text-[#151313] absolute top-2.5 lg:top-3 left-2.5 lg:left-3" />
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div className="flex justify-center lg:justify-between items-center w-full lg:flex-1">
-          <div className="flex flex-col items-center lg:items-start gap-5">
-            <div className="text-[#151313] font-reckless text-lg lg:text-xl font-normal leading-[22px] font-variant-caps">
-              SHOP
-            </div>
-            
-            <div className="flex flex-col items-center lg:items-start gap-2.5">
-              <div className="text-[#656665] font-poppins text-sm font-normal leading-normal tracking-[-0.28px]">
-                New arrival
-              </div>
-              <div className="text-[#656665] font-poppins text-sm font-normal leading-normal tracking-[-0.28px]">
-                Shop by category
-              </div>
-              <div className="text-[#656665] font-poppins text-sm font-normal leading-normal tracking-[-0.28px]">
-                Shop by collection
-              </div>
-              <div className="text-[#656665] font-poppins text-sm font-normal leading-normal tracking-[-0.28px]">
-                Gift
-              </div>
-            </div>
-            
-            <div className="text-black text-opacity-30 font-montreal text-[15px] font-medium leading-[22px] font-variant-caps">
-              © 2025 — Copyright
-            </div>
-          </div>
-        </div>
-      </footer>
-    </div>
+      <Footer />
+     </div>
     );
   }

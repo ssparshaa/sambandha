@@ -1,5 +1,6 @@
 "use client";
 import NavBar from "../../client/components/NavBar";
+import Footer from "../../client/components/Footer";
 import MainContactForm from "../../client/components/MainContactForm";
 const Index = () => {
   return <div className="min-h-screen bg-gradient-to-br from-warm-white via-white to-cream">
@@ -90,6 +91,8 @@ const Index = () => {
           </div>
         </div>
       </div>
+      {/* Footer */}
+      <Footer />
     </div>;
 };
 export default Index;
