@@ -3,7 +3,8 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion, Variants } from "framer-motion";
-import NavBar from "../client/components/NavBar"; // Adjust the path if necessary
+import NavBar from "../client/components/NavBar";
+import Footer from "../client/components/Footer";
 import InteractivePolaroid from "../client/components/InteractivePolaroid";
 import StackedPolaroids from "../client/components/StackedPolaroids";
 import {
@@ -421,6 +422,7 @@ export default function Home() {
           </div>
         </div>
       )}
+<<<<<<< HEAD
 
       {/* Footer */}
       <div className="flex flex-col justify-center items-center gap-[10px] w-full px-4 md:px-12 lg:px-[100px] pb-[70px] bg-white">
@@ -510,6 +512,9 @@ export default function Home() {
           </div>
         </div>
       </div>
+=======
+      <Footer />
+>>>>>>> 8924d7a7501d2095a99bdb994fdfaf02adc54f89
     </div>
   );
 }
