@@ -2,11 +2,14 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X, PlayCircle } from "lucide-react";
+import { Menu, X, PlayCircle, ShoppingBag } from "lucide-react";
+import { useCart } from "../../app/contexts/CartContext";
+import Checkout from "./Checkout";
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
   const [showDemo, setShowDemo] = useState(false);
+  const { state, toggleCart } = useCart();
 
   useEffect(() => {
     const handleResize = () => {
@@ -75,12 +78,18 @@ export default function NavBar() {
                   Watch Demo
                 </button>
 
-                <Link
-                  href="/login"
-                  className="bg-[#2d2d2d] text-white px-4 py-2 rounded-lg hover:bg-gray-800 text-button transition-colors duration-200"
+                {/* Cart Icon */}
+                <button
+                  onClick={toggleCart}
+                  className="relative bg-[#2d2d2d] text-white p-2 rounded-lg hover:bg-gray-800 transition-colors duration-200"
                 >
-                  Login
-                </Link>
+                  <ShoppingBag size={20} />
+                  {state.totalItems > 0 && (
+                    <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                      {state.totalItems}
+                    </span>
+                  )}
+                </button>
               </div>
 
               {/* Mobile Hamburger Menu */}
@@ -135,18 +144,27 @@ export default function NavBar() {
                 </button>
 
                 <div className="pt-2 border-t border-gray-100">
-                  <Link
-                    href="/signin"
-                    className="block bg-[#2d2d2d] text-white text-center px-4 py-3 rounded-lg hover:bg-gray-800 text-button transition-colors duration-200"
+                  <button
+                    onClick={toggleCart}
+                    className="flex items-center justify-center w-full bg-[#2d2d2d] text-white px-4 py-3 rounded-lg hover:bg-gray-800 text-button transition-colors duration-200 gap-2"
                   >
-                    Sign In
-                  </Link>
+                    <ShoppingBag size={18} />
+                    Cart
+                    {state.totalItems > 0 && (
+                      <span className="bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                        {state.totalItems}
+                      </span>
+                    )}
+                  </button>
                 </div>
               </div>
             </div>
           )}
         </nav>
       )}
+
+      {/* Checkout Component */}
+      <Checkout isOpen={state.isOpen} onClose={toggleCart} />
 
       {/* Demo Video Overlay */}
       {showDemo && (

@@ -1,9 +1,11 @@
 "use client"
 
 import { useState } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Plus, Minus } from "lucide-react";
 import NavBar from "../../client/components/NavBar";
 import Footer from "client/components/Footer";
+import { useCart } from "../contexts/CartContext";
+import { CartItem } from "../contexts/CartContext";
 
 const CURRENCY_RATES = {
   NPR: 1,
@@ -49,6 +51,8 @@ export default function ProductMorgan() {
   const priceNPR = 5000;
   const convertedPrice = (priceNPR * CURRENCY_RATES[currency]).toFixed(2);
   const [selectedColor, setSelectedColor] = useState(COLOR_OPTIONS[0].name);
+  const [quantity, setQuantity] = useState(1);
+  const { addItem, openCart } = useCart();
 
   const [moreProductColors, setMoreProductColors] = useState(
     MORE_PRODUCTS.map(() => COLOR_OPTIONS[0].name)
@@ -60,6 +64,26 @@ export default function ProductMorgan() {
       updated[productIdx] = colorName;
       return updated;
     });
+  };
+
+  const handleQuantityChange = (change: number) => {
+    setQuantity(prev => Math.max(1, prev + change));
+  };
+
+  const handleAddToBag = () => {
+    const cartItem: CartItem = {
+      id: 'morgan-eyeglasses',
+      name: 'Morgan',
+      price: priceNPR,
+      quantity: quantity,
+      color: selectedColor,
+      image: 'https://api.builder.io/api/v1/image/assets/TEMP/adc6f20b18e1d20bcabced31ecd328937174bcb7?width=1335',
+      currency: currency,
+      convertedPrice: parseFloat(convertedPrice),
+    };
+    
+    addItem(cartItem);
+    openCart();
   };
 
   return (
@@ -160,12 +184,39 @@ export default function ProductMorgan() {
                   ))}
                 </div>
               </div>
+              
+              {/* Quantity Selection */}
+              <div className="flex flex-col items-start gap-4">
+                <div className="flex items-start gap-2">
+                  <span className="text-[#686363] font-montreal text-xs font-normal leading-normal">
+                    Quantity
+                  </span>
+                </div>
+                <div className="flex items-center gap-4 bg-gray-50 rounded-lg p-2">
+                  <button
+                    onClick={() => handleQuantityChange(-1)}
+                    className="w-8 h-8 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-gray-100 transition-colors"
+                  >
+                    <Minus className="w-4 h-4" />
+                  </button>
+                  <span className="w-8 text-center font-medium text-lg">{quantity}</span>
+                  <button
+                    onClick={() => handleQuantityChange(1)}
+                    className="w-8 h-8 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-gray-100 transition-colors"
+                  >
+                    <Plus className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
             </div>
             
             {/* Add to Bag Button */}
-            <button className="w-full max-w-[193px] h-[44px] rounded-[200px] bg-[#272727] flex items-center justify-center">
+            <button 
+              onClick={handleAddToBag}
+              className="w-full max-w-[193px] h-[44px] rounded-[200px] bg-[#272727] hover:bg-[#1a1a1a] flex items-center justify-center transition-colors duration-200"
+            >
               <span className="text-[#f6f6f6] font-montreal text-sm font-normal leading-normal">
-                Add to Bag
+                Add to Bag ({quantity})
               </span>
             </button>
           </div>

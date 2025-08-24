@@ -2,11 +2,13 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, Variants } from "framer-motion";
 import NavBar from "../client/components/NavBar";
 import Footer from "../client/components/Footer";
 import InteractivePolaroid from "../client/components/InteractivePolaroid";
 import StackedPolaroids from "../client/components/StackedPolaroids";
+import { PlayCircle, ShoppingBag } from "lucide-react";
 import {
   Carousel,
   CarouselContent,
@@ -149,6 +151,26 @@ export default function Home() {
             >
               Probably the Closest Thing to Time Travel — Powered by Touch,
               Fueled by Love.
+            </motion.div>
+            
+            {/* Action Buttons */}
+            <motion.div
+              className="flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-4 w-full mt-6"
+              variants={fadeInUp}
+            >
+              <Link href="/product">
+                <button className="bg-[#2d2d2d] text-white px-6 py-2.5 rounded-full font-medium hover:bg-[#1a1a1a] transition-all duration-300 flex items-center justify-center gap-2 w-full sm:w-auto min-w-[160px] text-sm shadow-sm hover:shadow-md">
+                  <ShoppingBag size={16} />
+                  <span>Buy Now</span>
+                </button>
+              </Link>
+              <button
+                onClick={() => setShowDemo(true)}
+                className="bg-white text-[#2d2d2d] border border-[#2d2d2d] px-6 py-2.5 rounded-full font-medium hover:bg-[#f8f8f8] hover:border-[#1a1a1a] transition-all duration-300 flex items-center justify-center gap-2 w-full sm:w-auto min-w-[160px] text-sm shadow-sm hover:shadow-md"
+              >
+                <PlayCircle size={16} />
+                <span>Watch a Demo</span>
+              </button>
             </motion.div>
           </motion.div>
           <motion.div variants={slideInRight}>
@@ -359,25 +381,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* CTA: Watch a demo */}
-      <div className="flex flex-col items-center w-full px-4 md:px-12 lg:px-[100px] pb-20 bg-white">
-        <button
-          onClick={() => setShowDemo(true)}
-          className="bg-[#2d2d2d] text-white text-lg font-bold px-8 py-3 rounded-full shadow hover:bg-[#444] transition-colors duration-200 flex items-center gap-2"
-        >
-          <svg
-            width="22"
-            height="22"
-            viewBox="0 0 22 22"
-            fill="none"
-            aria-hidden="true"
-          >
-            <circle cx="11" cy="11" r="11" fill="#fff" fillOpacity="0.15" />
-            <polygon points="8,6 16,11 8,16" fill="#fff" />
-          </svg>
-          Watch a demo
-        </button>
-      </div>
 
       {showDemo && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/10 backdrop-blur-sm">
