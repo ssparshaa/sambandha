@@ -410,7 +410,6 @@ export default function Home() {
                 height="100%"
                 src="https://www.youtube.com/embed/dQw4w9WgXcQ"
                 title="Demo Video"
-                frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 className="w-full h-full"

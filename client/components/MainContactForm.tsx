@@ -11,47 +11,49 @@ const MainContactForm = () => {
     name: "",
     email: "",
     phone: "",
-    message: ""
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+
     toast({
       title: "Message sent successfully!",
       description: "Our team will get back to you within 24 hours.",
     });
-    
+
     setFormData({
       name: "",
       email: "",
       phone: "",
-      message: ""
+      message: "",
     });
     setIsSubmitting(false);
   };
 
   return (
-    <Card className="w-full max-w-2xl mx-auto shadow-lg border-0 bg-white/80 backdrop-blur-sm animate-scale-in">
+    <Card className="w-full max-w-2xl mx-auto shadow-lg border bg-white animate-scale-in">
       <CardContent className="p-8">
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <Label htmlFor="name" className="text-label text-gray-700">
+              <Label htmlFor="name" className="text-gray-700">
                 Full Name
               </Label>
               <Input
@@ -61,12 +63,12 @@ const MainContactForm = () => {
                 value={formData.name}
                 onChange={handleInputChange}
                 required
-                className="border-rose-200 focus:border-pink-400 focus:ring-pink-400/20 transition-all duration-200"
+                className="border-gray-300 focus:border-black focus:ring-black/20 transition-all duration-200"
                 placeholder="Your full name"
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-label text-gray-700">
+              <Label htmlFor="email" className="text-gray-700">
                 Email Address
               </Label>
               <Input
@@ -76,14 +78,14 @@ const MainContactForm = () => {
                 value={formData.email}
                 onChange={handleInputChange}
                 required
-                className="border-rose-200 focus:border-pink-400 focus:ring-pink-400/20 transition-all duration-200"
+                className="border-gray-300 focus:border-black focus:ring-black/20 transition-all duration-200"
                 placeholder="your@email.com"
               />
             </div>
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="phone" className="text-label text-gray-700">
+            <Label htmlFor="phone" className="text-gray-700">
               Phone Number
             </Label>
             <Input
@@ -93,13 +95,13 @@ const MainContactForm = () => {
               value={formData.phone}
               onChange={handleInputChange}
               required
-              className="border-rose-200 focus:border-pink-400 focus:ring-pink-400/20 transition-all duration-200"
+              className="border-gray-300 focus:border-black focus:ring-black/20 transition-all duration-200"
               placeholder="(555) 123-4567"
             />
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="message" className="text-label text-gray-700">
+            <Label htmlFor="message" className="text-gray-700">
               Message
             </Label>
             <Textarea
@@ -109,19 +111,20 @@ const MainContactForm = () => {
               onChange={handleInputChange}
               required
               rows={6}
-              className="border-rose-200 focus:border-pink-400 focus:ring-pink-400/20 transition-all duration-200 resize-none"
+              className="border-gray-300 focus:border-black focus:ring-black/20 transition-all duration-200 resize-none"
               placeholder="Tell us about your interest in Sambandha jewelry or any questions you have..."
             />
           </div>
 
+          {/* Black Submit Button */}
           <Button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-gradient-to-r from-beige to-baby-pink text-gray-800 text-button py-3 rounded-lg hover:shadow-lg transform hover:scale-[1.02] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full bg-black text-white py-3 rounded-lg hover:bg-gray-900 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isSubmitting ? (
               <div className="flex items-center justify-center space-x-2">
-                <div className="w-4 h-4 border-2 border-gray-800 border-t-transparent rounded-full animate-spin"></div>
+                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                 <span>Sending...</span>
               </div>
             ) : (
