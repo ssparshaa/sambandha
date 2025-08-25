@@ -23,7 +23,8 @@ const faqs = [
 ];
 
 const Index = () => {
-  const [openIndex, setOpenIndex] = useState(null);
+  // ✅ fix: allow number OR null
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
