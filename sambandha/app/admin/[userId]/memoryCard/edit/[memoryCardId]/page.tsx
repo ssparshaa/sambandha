@@ -1,0 +1,13 @@
+import { NextPage } from "next";
+import Edit from "./Edit";
+
+interface PageProps {
+  params: Promise<{ userId: string; memoryCardId: string }>;
+}
+
+const Page = async ({ params }: PageProps) => {
+  const { userId, memoryCardId } = await params;
+  return <Edit userId={userId} memoryCardId={memoryCardId} />;
+};
+
+export default Page;
