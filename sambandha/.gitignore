@@ -1,0 +1,56 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+dist-ssr/
+.next/          # Next.js build output
+out/            # Next.js static export output
+.netlify/       # Netlify build output
+.vercel/        # Vercel (if used)
+
+# Local environment
+*.local
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+!.env           # keep main .env only if you want it in git (not recommended for secrets)
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+.docker/        # if you keep temporary docker stuff
+
+# Builder.io
+.builder/       # Builder.io local cache (safe to ignore)
+
+# Config & cache
+.config/
+.cache/
+.npmrc
+.yarnrc.yml
+.pnpm-store/
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# System files
+Thumbs.db
